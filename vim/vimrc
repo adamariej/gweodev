@@ -33,7 +33,7 @@ set laststatus=2                             " display statusline all the time
 set timeoutlen=1000                          " timeout for shortcuts
 set noshowmode                               " remove " -- MODE -- " displaying under the statusline
 set t_Co=256                                 " Enable 256 colors in terminal for Vim
-let g:airline_powerline_fonts = 1            " To disable if fonts not available
+let g:airline_powerline_fonts = 0            " To disable if fonts not available
 
 " For fonts 'Plugin'
 " 1. Download plugin with vundle
@@ -83,13 +83,6 @@ Plugin 'airblade/vim-gitgutter'  " Display differences in gutter
 Plugin 'vim-scripts/a.vim'        " switch between .h and .c*
 let g:tagbar_autofocus=1
 Plugin 'majutsushi/tagbar'        " ctags handling
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-markdown'       " markdown automatic support
 Plugin 'Raimondi/delimitMate'     " Auto closing
@@ -122,14 +115,16 @@ map <F8> :make<cr><cr>
 " split windows nagivation
 nmap <Tab> :tabn<cr>
 map <S-Tab> :tabp<cr>
+
 " clipboard handling (if compiled w/ Vim)
 nmap <leader>; yy
 vmap <leader>; "+y
 map <leader>: "+p<cr>
+
+" tags handling
 map ff :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map fd :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map fs :sp <CR>:exec("tag ".expand("<cword>"))<CR>
-
 "##############################################################################"
 "#                              MAIN SETTINGS                                 #"
 "##############################################################################"
