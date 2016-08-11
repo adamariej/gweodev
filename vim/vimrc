@@ -1,0 +1,187 @@
+"##############################################################################"
+"##############################################################################"
+"##                                                                          ##"
+"##                        VIMRC CONFIGURATION FILE                          ##"
+"##                                                                          ##"
+"## Last Update        : 1st June 2015                                       ##"
+"## Author             : Julien Adam <julien.adam-dev@sfr.fr>                ##"
+"## License            : BFB Licence ("Bear Full of Beer" license)           ##"
+"## Last plugin update : 1st June 2015                                       ##"
+"##                                                                          ##"
+"##############################################################################"
+"##############################################################################"
+
+"##############################################################################"
+"#                           PLUGIN MANAGER INIT                              #"
+"##############################################################################"
+set nocompatible                       " disable retro compatibility with vi
+filetype off                           " Disabling autoload plugins
+set rtp+=~/.vim/bundle/vundle.vim/     " adding vundle to runtime path
+call vundle#begin()                    " start plugin declaration sequence
+let g:vundle_default_git_proto = 'git' " use git by default for update
+Plugin 'gmarik/vundle.vim'             " Plugin manager
+
+"##############################################################################"
+"#                              LOADED PLUGINS                                #"
+"##############################################################################"
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+"                 VIM INTERFACE               "
+"""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1 " Enabling tabline with only one tab
+set laststatus=2                             " display statusline all the time
+set timeoutlen=1000                          " timeout for shortcuts
+set noshowmode                               " remove " -- MODE -- " displaying under the statusline
+set t_Co=256                                 " Enable 256 colors in terminal for Vim
+let g:airline_powerline_fonts = 1            " To disable if fonts not available
+
+" For fonts 'Plugin'
+" 1. Download plugin with vundle
+" 2. go to ~/.vim/bundle/fonts and run ./install.sh
+" 3. change font terminal with one recently uploaded (eg: Inconsolata,...)
+" 4. Enjoy !
+Plugin 'powerline/fonts'            " Powerline fonts for smooth characters
+Plugin 'bling/vim-airline'          " Displaying smooth statusline
+Plugin 'flazz/vim-colorschemes'     " Download huge bunchs of themes
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+"                   NERDTREE                  "
+"""""""""""""""""""""""""""""""""""""""""""""""
+let g:nerdtree_tabs_open_on_console_startup = 0 " Disable on startup
+let g:nerdtree_tabs_open_on_gui_startup = 0     " Disable on gui startup
+let g:nerdtree_tabs_autoclose = 1               " Close when last window
+let g:nerdtree_tabs_synchronize_view = 0        " sync Tree between tab
+let g:nerdtree_tabs_smart_startup_focus = 1     " Keep focus on desired window
+let NERDTreeShowBookmarks = 1                   " Enable bookmarks displaying by default
+Plugin 'scrooloose/nerdtree'                    " Standard NERDTree
+Plugin 'jistr/vim-nerdtree-tabs'                " Extended NERDTree w/ tabs handling
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+"                   SNIPPETS                  "
+"""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"         " change snippet trigger on '<tab>'
+let g:UltiSnipsJumpForwardTrigger="<tab>"    " change 'next field' to '<tab>'
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>" " change 'previous field to '<shift-tab>'
+
+" For installing snippets engine UltiSnips if vim is without python support
+" 1. Install python from sources (--enable-shared)
+" 2. Recomile vim with --enable-python?interp (? = 3 if python3)
+Plugin 'SirVer/ultisnips'                    " snippets engine (own format + snipMate)
+Plugin 'honza/vim-snippets'                  " snippets files (support both ultisnips and snipMate)
+Plugin 'scrooloose/nerdcommenter'            " Commenter
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+"                     GIT                     "
+"""""""""""""""""""""""""""""""""""""""""""""""
+set diffopt+=vertical            " Gdiff is split in vertical way
+Plugin 'tpope/vim-fugitive'      " main git plugin, commands in vim
+Plugin 'airblade/vim-gitgutter'  " Display differences in gutter
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+"                MISCELLANEOUS                "
+"""""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'vim-scripts/a.vim'        " switch between .h and .c*
+let g:tagbar_autofocus=1
+Plugin 'majutsushi/tagbar'        " ctags handling
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-markdown'       " markdown automatic support
+Plugin 'Raimondi/delimitMate'     " Auto closing
+
+"##############################################################################"
+"#                           FINISHING PLUGIN INIT                            #"
+"##############################################################################"
+" end of plugin declaration
+call vundle#end()
+
+"##############################################################################"
+"#                              KEY MAPPING                                   #"
+"##############################################################################"
+let mapleader = "," " map ',' as leader key
+
+"########################## FUNCTION KEY MAPPING ##############################"
+" Never bind <F1> key -> can be intercept by xterm
+map <F2> :NERDTreeTabsToggle<cr>
+map <F3> :TagbarToggle<cr>
+"map <F4> 
+map <F5> :noh<cr>
+"map <F6> 
+"map <F7>
+map <F8> :make<cr><cr>
+"map <F9>
+"map <F10> 
+"No mapping for F11 : fullscreen
+"map <F12>
+"##############################################################################"
+" split windows nagivation
+nmap <Tab> :tabn<cr>
+map <S-Tab> :tabp<cr>
+" clipboard handling (if compiled w/ Vim)
+nmap <leader>; yy
+vmap <leader>; "+y
+map <leader>: "+p<cr>
+map ff :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map fd :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+map fs :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"##############################################################################"
+"#                              MAIN SETTINGS                                 #"
+"##############################################################################"
+syntax enable                      " enable syntax highlightning
+filetype indent plugin on          " Enable indent & plugin using
+set history=256                    " command line history size
+set smartcase                      " smart cases depending on searches
+set lbr                            " smooth line breaking
+set magic                          " regexs portability
+set directory=~/.vim/vimswaps,/tmp " storing temp files
+set noswapfile                     " no swap files
+set nobackup                       " no permanent backup when saving files
+set writebackup                    " just temporary backups when saving files
+set autoread                       " reload when updated from outside
+set autochdir                      " chdir in directory when opening a file
+set wildmode=longest:full,full     " Completion mode : Longest(w/ visu) then full
+set wildmenu                       " completion menu
+let g:tex_flavor = "latex"         " default Tex context
+set tags=tags;
+
+"##############################################################################"
+"#                                 INTERFACE                                  #"
+"##############################################################################"
+colorscheme molokai            " define color schemes (see ~/.vim/bundle/vim-colorschemes)
+set background=dark            " luminosity style (light/dark)
+set cursorline                 " highlight current line
+" set cursorcolumn             " highlight current column
+set fileencodings=utf-8        " default encoding for new files
+set scrolloff=3                " Min on lines to keep around cursor
+set number                     " set lines number
+set backspace=indent,eol,start " redefine standard backspace behavior
+set splitbelow                 " when split, open at below
+set splitright                 " when vsplit, open at right
+set showcmd                    " display current command in status line
+set wrap                       " automatic lines wrapping
+set tabstop=8                  " tab size (as spaces)
+set shiftwidth=8               " shifting insertion (like tabs)
+set autoindent                 " auto-indent
+set mouse=a                    " Mouse support
+
+"##############################################################################"
+"#                                ABBREVIATIONS                              ##"
+"##############################################################################"
+
+"##############################################################################"
+"#                               MISCELLANEOUS                               ##"
+"##############################################################################"
+" open external command in quickfix when outputs
+autocmd QuickFixCmdPost [^l]* nested cwindow " open quickfix window
+autocmd QuickFixCmdPost    l* nested lwindow " open wuickfix window
+autocmd QuickFixCmdPost *grep* cwindow
+" map cursor on last position
+autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
+" autocmd when file open 
+autocmd BufReadPre,BufNewFile *.md,README*,*.tex setlocal textwidth=80 colorcolumn=80
