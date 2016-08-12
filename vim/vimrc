@@ -125,6 +125,11 @@ map <leader>: "+p<cr>
 map ff :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map fd :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map fs :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"mouse support
+map <ScrollWheelUp> 3<C-Y>
+map <ScrollWheelDown> 3<C-E>
+
 "##############################################################################"
 "#                              MAIN SETTINGS                                 #"
 "##############################################################################"
@@ -164,7 +169,6 @@ set tabstop=8                  " tab size (as spaces)
 set shiftwidth=8               " shifting insertion (like tabs)
 set autoindent                 " auto-indent
 set mouse=a                    " Mouse support
-
 "##############################################################################"
 "#                                ABBREVIATIONS                              ##"
 "##############################################################################"
