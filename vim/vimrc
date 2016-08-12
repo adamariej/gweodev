@@ -100,35 +100,52 @@ let mapleader = "," " map ',' as leader key
 
 "########################## FUNCTION KEY MAPPING ##############################"
 " Never bind <F1> key -> can be intercept by xterm
+" FS Tree Panel
 map <F2> :NERDTreeTabsToggle<cr>
+" Current File Tag Panel
 map <F3> :TagbarToggle<cr>
 "map <F4> 
+" Disabling Highlighting
 map <F5> :noh<cr>
 "map <F6> 
 "map <F7>
+" Run Make command
 map <F8> :make<cr><cr>
 "map <F9>
 "map <F10> 
 "No mapping for F11 : fullscreen
 "map <F12>
 "##############################################################################"
-" split windows nagivation
+" Next tab
 nmap <Tab> :tabn<cr>
+" Previous tab
 map <S-Tab> :tabp<cr>
+" Next Buffer
+map <C-n> :bn<cr>
+" Previous Buffer
+map <C-B> :bp<cr>
 
 " clipboard handling (if compiled w/ Vim)
+" Copy the line into the clipboard
 nmap <leader>; yy
+" Copy the selection into the clipboard
 vmap <leader>; "+y
+" Paste the clipboard where the cursor is
 map <leader>: "+p<cr>
 
 " tags handling
+" Look for under-cursor tag and open the result in new tab
 map ff :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" Look for under-cursor tag and open the result in new vsplit
 map fd :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" Look for under-cursor tag and open the result in new hsplit
 map fs :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "mouse support
+" Scroll 3 lines up with the mouse wheel
 map <ScrollWheelUp> 3<C-Y>
-map <ScrollWheelDown> 3<C-E>
+" Scroll 3 lines down with the mouse wheel
+map <ScrollWheelDown> 3<C-E> 
 
 "##############################################################################"
 "#                              MAIN SETTINGS                                 #"
