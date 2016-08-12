@@ -10,7 +10,7 @@ cp -rvf ./bash_env/* $HOME/.superbash/
 printf "\n"
 test -d $HOME/.vim && (
 printf " * VIM updating\n"
-cp -vf ./vim/vimrc $HOME/.superbash/.vimrc
+cp -vf ./vim/vimrc $HOME/.superbash/vimrc
 vim +PluginUpdate +qall
 ) || printf " * VIM configuration not updated\n"
 
