@@ -15,17 +15,20 @@ alias du="du -sh"
 ##############
 
 export SUPERBASH_DOCS_PATH=""
-alias pro="cd ${SUPERBASH_USER_FILES}/projets/"
-alias protex="cd ${SUPERBASH_USER_FILES}/tex/"
 
 PRO=${SUPERBASH_USER_FILES}/projets
 export PRO
+alias pro="cd ${PRO}"
+
 PROTEX=${SUPERBASH_USER_FILES}/tex
 export PROTEX
+alias protex="cd ${PROTEX}"
 
 ##############
 ### OTHERS ###
 ##############
 alias freq="cat $HISTFILE | cut -f1 -d' ' | sort | uniq -c | sort -nr | head -n 30"
 alias gl="git log --graph --all --color --pretty=format:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s | less -R"
-alias glc="git log | grep Date | awk '{print \" : \"\$4\" \"\$3\" \"\$6}' | uniq -c | sort -t ':'"
+alias gdb="gdb --quiet"
+alias vi="vim"
+alias vim="vim -p"
