@@ -9,7 +9,7 @@ fi
 . ${SUPERBASH_SOURCE_DIR}/bash_functions
 . ${SUPERBASH_SOURCE_DIR}/bash_ps1
 . ${SUPERBASH_SOURCE_DIR}/bash_git_completion
-test -d ${SUPERBASH_SOURCE_DIR} && . ${SUPERBASH_SOURCE_DIR}/bash_custom
+test -f ${SUPERBASH_SOURCE_DIR}/bash_custom && . ${SUPERBASH_SOURCE_DIR}/bash_custom
 
 # For i3 support with user-defined terminal
 export TERMINAL=gnome-terminal
