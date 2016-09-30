@@ -1,5 +1,7 @@
 #!/bin/bash
 
+printf "This script should be useless now !" && exit 0
+
 test ! -d ./bash_env && printf "This script should be run from root directory !\n" && exit 1
 
 test -d $HOME/.superbash && (
