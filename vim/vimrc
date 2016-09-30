@@ -41,6 +41,11 @@ let g:airline_powerline_fonts = 0            " To disable if fonts not available
 " 3. change font terminal with one recently uploaded (eg: Inconsolata,...)
 " 4. Enjoy !
 Plugin 'powerline/fonts'            " Powerline fonts for smooth characters
+let g:airline#extensions#whitespace#trailing_format = 'tr[%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'mix[%s]'
+let g:airline#extensions#whitespace#long_format = 'l[%s]'
+let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-f[%s]'
+let g:airline#extensions#tabline#fnamemod = ':t'
 Plugin 'bling/vim-airline'          " Displaying smooth statusline
 Plugin 'flazz/vim-colorschemes'     " Download huge bunchs of themes
 
@@ -107,11 +112,11 @@ map <F3> :TagbarToggle<cr>
 "map <F4> 
 " Disabling Highlighting
 map <F5> :noh<cr>
-"map <F6> 
-"map <F7>
+map <F6> :GitGutterUndoHunk<cr> 
+map <F7> :GitGutterPrevHunk<cr>
+map <F8> :GitGutterNextHunk<cr>
 " Run Make command
-map <F8> :make<cr><cr>
-"map <F9>
+map <F9> :make<cr><cr>
 "map <F10> 
 "No mapping for F11 : fullscreen
 "map <F12>
@@ -120,6 +125,7 @@ map <F8> :make<cr><cr>
 nmap <Tab> :tabn<cr>
 " Previous tab
 map <S-Tab> :tabp<cr>
+map <leader>n :tabnew 
 " Next Buffer
 map <C-n> :bn<cr>
 " Previous Buffer
@@ -132,6 +138,7 @@ nmap <leader>; yy
 vmap <leader>; "+y
 " Paste the clipboard where the cursor is
 map <leader>: "+p<cr>
+map <c-o> :CtrlPTag<cr>
 
 " tags handling
 " Look for under-cursor tag and open the result in new tab
@@ -140,6 +147,8 @@ map ff :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map fd :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Look for under-cursor tag and open the result in new hsplit
 map fs :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+" Look for under-cursor tag and replace the current window
+map fe :e <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "mouse support
 " Scroll 3 lines up with the mouse wheel
@@ -165,6 +174,7 @@ set autochdir                      " chdir in directory when opening a file
 set wildmode=longest:full,full     " Completion mode : Longest(w/ visu) then full
 set wildmenu                       " completion menu
 let g:tex_flavor = "latex"         " default Tex context
+let g:load_doxygen_syntax=1
 set tags=tags;
 
 "##############################################################################"
