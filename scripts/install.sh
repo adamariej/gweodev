@@ -25,15 +25,5 @@ printf " * Skipping VIM deployment: vim not found\n"
 fi
 #deploy vim
 
-#which i3 > /dev/null 2>&1
-#if test $? -eq 0
-#then
-#printf " * I3 configuration deployment\n"
-#mkdir -p $HOME/.i3
-#ln -sf $PWD/i3/* $HOME/.i3/
-#else
-#printf " * Skipping i3 deployment: i3 not found\n"
-#fi 
-
 printf "Installation completed !\n"
 
