@@ -33,7 +33,7 @@ set laststatus=2                             " display statusline all the time
 set timeoutlen=1000                          " timeout for shortcuts
 set noshowmode                               " remove " -- MODE -- " displaying under the statusline
 set t_Co=256                                 " Enable 256 colors in terminal for Vim
-let g:airline_powerline_fonts = 0            " To disable if fonts not available
+let g:airline_powerline_fonts = 1            " To disable if fonts not available
 
 " For fonts 'Plugin'
 " 1. Download plugin with vundle
