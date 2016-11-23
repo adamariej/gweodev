@@ -1,0 +1,86 @@
+[core]
+	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes_global
+	pager = diff-highlight | less 
+	compression = 9
+
+[help]
+	autocorrect = 1
+
+[user]
+	email = adamj@paratools.com
+	name = Julien Adam
+	editor = vi
+	useConfigOnly = true
+	signingkey = EFE50C63
+
+[diff]
+	mnemonicprefix = true
+
+[log]
+	showSignature = true
+	mailmap = true
+
+[instaweb]
+	browser = firefox
+	httpd = webrick
+
+[rebase]
+	gpgsign = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[push]
+	default = matching
+[branch]
+	autosetuprebase = always
+[color]
+	ui = auto
+[gc]
+	pruneExpire = now
+[color "diff"]
+	meta = cyan
+	old = red
+	new = green
+	commit = yellow
+	whitespace = red reverse
+
+[color "status"]
+	header = normal
+	added = green
+	changed = yellow
+	untracked = red
+[merge]
+	gpgsign = true
+	tool = kdiff3
+	log = true
+
+; diff rules
+[diff "tarbz2"]
+	textconv = tar -O -xjf
+[diff "targz"]
+	textconv = tar -O -xzf
+[diff "tarxz"]
+	textconv = tar -O -xJf
+[diff "pdf"]
+	textconv = pdfinfo
+[diff "bin"]
+	textconv = hexdump -v -C
+[diff "zip"]
+	textconv = unzip -p
+
+; external tools
+[tig]
+	line-graphics = yes
+	tab-size = 8
+	;diff-highlight = true
+
+[alias]
+	flat = clone --depth 1
+[rerere]
+	enabled = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	required = true
+	clean = git-lfs clean -- %f

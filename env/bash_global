@@ -13,3 +13,7 @@ test -f ${SUPERBASH_SOURCE_DIR}/bash_custom && . ${SUPERBASH_SOURCE_DIR}/bash_cu
 
 # For i3 support with user-defined terminal
 export TERMINAL=gnome-terminal
+
+export PATH=${SUPERBASH_SOURCE_DIR}/../.usr/bin:$PATH
+export LD_LIBRARY_PATH=${SUPERBASH_SOURCE_DIR}/../.usr/lib:$LD_LIBRARY_PATH
+export INCLUDE_PATH=${SUPERBASH_SOURCE_DIR}/../.usr/include:$INCLUDE_PATH
