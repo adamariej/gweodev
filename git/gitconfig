@@ -3,6 +3,7 @@
 	attributesfile = ~/.gitattributes_global
 	pager = diff-highlight | less 
 	compression = 9
+	askpass = 
 
 [help]
 	;autocorrect = 1
