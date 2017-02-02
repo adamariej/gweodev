@@ -1,6 +1,6 @@
 #*.tar.bz2 diff=tarbz2
 #*.tbz2 diff=tarbz2
-#*.tar.gz diff=targz
+*.tar.gz diff=targz
 #*.tgz diff=targz
 #*.tar.xz diff=tarxz
 #*.tar diff=tar

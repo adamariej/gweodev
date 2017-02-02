@@ -5,7 +5,7 @@
 	compression = 9
 
 [help]
-	autocorrect = 1
+	;autocorrect = 1
 
 [user]
 	email = adamj@paratools.com
@@ -16,6 +16,7 @@
 
 [diff]
 	mnemonicprefix = true
+	renames = copy
 
 [log]
 	showSignature = true
@@ -27,12 +28,21 @@
 
 [rebase]
 	gpgsign = true
+	missingCommitsCheck = warn
+
+[column]
+	ui = auto
+	status = never
+
 [commit]
 	gpgsign = true
+	verbose = true
 [tag]
 	gpgsign = true
 [push]
-	default = matching
+	default = simple
+	gpgsign = if-asked
+
 [branch]
 	autosetuprebase = always
 [color]
@@ -78,6 +88,17 @@
 
 [alias]
 	flat = clone --depth 1
+	co = checkout
+	cob = checkout -b
+	s = status -s
+	d = diff
+	dc = diff --cached
+	r = rebase
+	ri = rebase -i
+	ap = add -p
+	clear = reset --hard HEAD
+
+
 [rerere]
 	enabled = true
 [filter "lfs"]
