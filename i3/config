@@ -161,7 +161,7 @@ bar {
 		}
 }
 # apply background
-exec --no-startup-id feh --bg-scale ~/.superbash/img/background.png
+exec --no-startup-id feh --bg-scale ~/Documents/projets/superbash/img/background.png
 
 #BRIGHTNESS
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10

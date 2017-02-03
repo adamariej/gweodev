@@ -32,3 +32,4 @@ alias gl="git log --graph --all --color --pretty=format:%x1b[31m%h%x09%x1b[32m%d
 alias gdb="gdb --quiet"
 alias vi="vim"
 alias vim="vim -p"
+alias tmux="tmux -2" #force 256-color mode
