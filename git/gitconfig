@@ -88,14 +88,18 @@
 	;diff-highlight = true
 
 [alias]
+	cl = clone
 	flat = clone --depth 1
+	amend = commit --amend
+	bl = blame
+	ci = commit
 	co = checkout
 	cob = checkout -b
-	s = status -s
+	st = status -s
 	d = diff
 	dc = diff --cached
-	r = rebase
-	ri = rebase -i
+	rb = rebase
+	rbi = rebase -i
 	ap = add -p
 	clear = reset --hard HEAD
 
