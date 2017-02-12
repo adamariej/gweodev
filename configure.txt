@@ -1,0 +1,17 @@
+#syntax: Tool;pre_command;configure_args;make_targets
+
+#Git
+git;make configure;;install
+tig;;;install
+
+#editor
+vim;;;install
+vundle;;;install
+ctags;;;install
+
+#terminal multiplexer
+tmux;;;install
+
+# compiling environments
+gcc;;;install
+gdb;;;install
