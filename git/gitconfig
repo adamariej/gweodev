@@ -1,9 +1,9 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	attributesfile = ~/.gitattributes_global
-	pager = less 
+	;pager = less 
 	;uncomment after set the binary in your path (git contrib)
-	;pager = diff-highlight | less 
+	pager = diff-highlight | less 
 	compression = 9
 	askpass = 
 

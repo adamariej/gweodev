@@ -42,44 +42,37 @@ help_menu()
 deploy_apps()
 {
 	mkdir -p $BUILD_PREFIX
-	cd $BUILD_PREFIX
 
-	for app in `cat $SOURCE_PREFIX/url.txt`
+	for app in `cat $SOURCE_PREFIX/products.txt`
 	do
-		app_name=`echo $app | cut -f1 -d';'`
-		app_url=`echo $app | cut -f2 -d';'`
-
-		if test -n "`echo $app_name | \egrep "^#.*$"`"; then
+		if test -n "`echo $app | \egrep "^#.*$"`"; then
 			continue;
 		fi
 
-		l="`cat $SOURCE_PREFIX/configure.txt | \egrep "^$app_name;.*$"`"
-		app_before="`echo $l | cut -f2 -d";"`"
-		app_cargs="`echo $l | cut -f3 -d";"`"
-		app_margs="`echo $l | cut -f4 -d";"`"
-
-		rm -rf $app_name
-		echo git clone --depth 1 $app_url $app_name || error "Unable to clone $app_name"
-		#cd $app_name && mkdir -p build && cd build
-
-		if test -n "$app_before"; then
-			echo $app_before
+		if test ! -f $SOURCE_PREFIX/$app/setup.sh; then
+			printf "No Setup for $app\n"
+			continue;
 		fi
-		echo ../configure $app_cargs --prefix=$INSTALL_APP_PREFIX || error "Unable to run \'$app_name\' configure !"
-		echo make -j4 $app_margs || error "Unable to install \'$app_name\' software !"
-		echo
+
+		. $SOURCE_PREFIX/$app/setup.sh
+		
+		url="`get_url`"
+		echo "Cloning $app from $url"
+		git clone --depth 1 $url $BUILD_PREFIX/$app > /dev/null 2>&1 || error "Unable to clone $app"
+		
+		run_configure "$BUILD_PREFIX/$app" "$INSTALL_APP_PREFIX" || error "Unable to run \'$app_name\' configuration !"
+		run_install || error "Unable to install \'$app_name\' software !"
+		
+		for link in `get_linkpaths`
+		do
+			if test ! -a $INSTALL_PREFIX/$link ; then
+				ln -sf $SOURCE_PREFIX/$link $INSTALL_PREFIX/$link
+			else
+				error "Can't override $INSTALL_PREFIX/$link: Is not our symlink !\n"
+			fi
+		done
 
 	done
-}
-
-deploy_link()
-{
-	#deploy the env
-	if test ! -a $1 ; then
-		ln -sf $2 $1
-	else
-		error "Can't override $1: Is not our symlink !\n"
-	fi
 }
 
 for arg in $@
@@ -90,9 +83,6 @@ do
 			;;
 		--prefix=*)
 			INSTALL_PREFIX=$(read_arg "$arg" "--prefix")
-			;;
-		--with-apps)
-			DEPLOY_APPS=yes;
 			;;
 		--app-prefix=*)
 			INSTALL_APP_PREFIX=$(read_arg "$arg" "--app-prefix")
@@ -115,21 +105,9 @@ print_config
 # assert if trying to build or install in src tree
 test "$BUILD_PREFIX"   = "$SOURCE_PREFIX" && error "Can't build our distrib directly in source tree !\n"
 test "$INSTALL_PREFIX" = "$SOURCE_PREFIX" && error "Can't install directly in SRC tree !\n"
-test "$DEPLOY_APPS" = "yes" -a "$INSTALL_APP_PREFIX" = "$SOURCE_PREFIX" && error "Can't install apps directly in SRC tree\n"
+test "$INSTALL_APP_PREFIX" = "$SOURCE_PREFIX" && error "Can't install apps directly in SRC tree\n"
 
-if test "$DEPLOY_APPS" = "yes"; then
-	deploy_apps
-fi
-exit 0
-
-
-deploy_link "$INSTALL_PREFIX/.superenv" "$SOURCE_PREFIX/env"
-deploy_link "$INSTALL_PREFIX/.vimrc" "$SOURCE_PREFIX/vim/vimrc"
-deploy_link "$INSTALL_PREFIX/.tmux.conf" "$SOURCE_PREFIX/tmux/tmux.conf"
-deploy_link "$INSTALL_PREFIX/.gitconfig" "$SOURCE_PREFIX/git/gitconfig"
-deploy_link "$INSTALL_PREFIX/.gitattributes_global" "$SOURCE_PREFIX/git/gitattributes_global"
-deploy_link "$INSTALL_PREFIX/.gitignore_global" "$SOURCE_PREFIX/git/gititgnore_global"
-deploy_link "$INSTALL_PREFIX/.gdbinit" "$SOURCE_PREFIX/gdb/gdbinit"
+deploy_apps
 
 printf "Installation completed !\n"
 if test -n "$INSTALL_APP_PREFIX"; then

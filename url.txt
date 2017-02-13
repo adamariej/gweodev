@@ -1,8 +1,0 @@
-git;https://github.com/git/git.git
-tig;https://github.com/jonas/tig.git
-vim;https://github.com/vim/vim.git
-vundle;https://github.com/VundleVim/Vundle.vim.git
-ctags;https://github.com/universal-ctags/ctags.git
-tmux;https://github.com/tmux/tmux.git
-#gcc;https://github.com/gcc-mirror/gcc.git
-#gdb;git://sourceware.org/git/binutils-gdb.git
