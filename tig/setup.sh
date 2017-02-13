@@ -2,7 +2,7 @@
 
 get_url()
 {
-	echo 'https://github.com/gcc-mirror/gcc.git'
+	echo 'https://github.com/jonas/tig.git'
 }
 
 get_linkpaths()
@@ -22,5 +22,5 @@ run_configure()
 
 run_install()
 {
-	echo "Installing GCC"
+	echo "Installing tig"
 }

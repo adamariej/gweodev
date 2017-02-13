@@ -2,12 +2,12 @@
 
 get_url()
 {
-	echo 'https://github.com/...'
+	echo 'https://github.com/VundleVim/Vundle.vim.git'
 }
 
 get_linkpaths()
 {
-	echo ".gitconfig .gitattributes_global .gitignore_global"
+	echo ""
 }
 
 #$1 = SRC
@@ -22,4 +22,5 @@ run_configure()
 
 run_install()
 {
+	echo "Installing Vundle (in ~/.vim/bundle)"
 }

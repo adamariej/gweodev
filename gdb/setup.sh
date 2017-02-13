@@ -2,12 +2,12 @@
 
 get_url()
 {
-	echo 'https://github.com/...'
+	echo 'git://sourceware.org/git/binutils-gdb.git'
 }
 
 get_linkpaths()
 {
-	echo ".gitconfig .gitattributes_global .gitignore_global"
+	echo ".gdbinit"
 }
 
 #$1 = SRC
@@ -22,4 +22,5 @@ run_configure()
 
 run_install()
 {
+	echo "Installing GDB"
 }
