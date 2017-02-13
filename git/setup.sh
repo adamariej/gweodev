@@ -25,4 +25,5 @@ run_configure()
 
 run_install()
 {
+	make $MAKE_J install
 }

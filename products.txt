@@ -1,9 +1,9 @@
 superenv
 git
-tig
-vim
-vundle
-ctags
-tmux
+#tig
+#vim
+#vundle
+#ctags
+#tmux
 #gcc
 #gdb
