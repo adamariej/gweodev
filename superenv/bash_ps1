@@ -10,7 +10,7 @@ function __git_ps1 ()
 {
 	local b="`git symbolic-ref HEAD 2>/dev/null`";
 	if [ -n "$b" ]; then
-	printf "(%s)" "${b##refs/heads/}";
+	printf "(%s [compat])" "${b##refs/heads/}";
 fi
 }
 fi
@@ -107,11 +107,6 @@ specChar="\\\$"
 ret="\\\$?"
 SELECT="ret=\$?; test \$ret = 0 && echo \"${IBlack}[\$ret]${Color_Off}\" || echo \"${IRed}[\$ret]${Color_Off}\""
 
-function __is_term_caught()
-{
-	test "1" = "1";
-	#test "$TERM" = "screen" -o "$TERM" = "tmux" && printf " *${TERM}*"
-}
 # This PS1 snippet was adopted from code for MAC/BSD I saw from: http://allancraig.net/index.php?option=com_content&view=article&id=108:ps1-export-command-for-git&catid=45:general&Itemid=96
 # I tweaked it to work on UBUNTU 11.04 & 11.10 plus made it mo' better
 
@@ -121,4 +116,4 @@ export PS2="$IRed--> $Color_Off"
 export PS1="$Cyan($Time24h) \`${SELECT}\`$Color_Off"'`
 git branch &>/dev/null && test $? -eq 0 && echo " '$BYellow'"$(__git_ps1 "(%s)") || echo ""`'" $BBlue$User@"'`
 test -n "$SSH_CONNECTION" && echo "'$Red'" || echo "'$Green'"`'"$HostShort$Yellow ($Jobs) $BWhite$PathFull\n$Color_Off"'`
-test "'$specChar'"  = "#" && echo "'$BRed' (As Root)"`'"$BCyan"'$(__is_term_caught)'"$Color_Off >> "
+test "'$specChar'"  = "#" && echo "'$BRed' (As Root)"`'"$Color_Off >> "

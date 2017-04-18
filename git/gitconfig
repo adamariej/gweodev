@@ -1,9 +1,8 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	attributesfile = ~/.gitattributes_global
-	;pager = less 
 	;uncomment after set the binary in your path (git contrib)
-	pager = diff-highlight | less 
+	pager = diff-so-fancy | less --tabs=4 -RFX
 	compression = 9
 	askpass = 
 
@@ -34,8 +33,8 @@
 	missingCommitsCheck = warn
 
 [column]
-	ui = auto
 	status = never
+	;ui = auto
 
 [commit]
 	gpgsign = true
@@ -53,7 +52,7 @@
 [gc]
 	pruneExpire = now
 [color "diff"]
-	meta = cyan
+	meta = bold yellow
 	old = red
 	new = green
 	commit = yellow
@@ -66,7 +65,8 @@
 	untracked = red
 [merge]
 	gpgsign = true
-	tool = kdiff3
+	tool = vimdiff
+	conflictstyle = diff3
 	log = true
 
 ; diff rules
@@ -87,7 +87,8 @@
 [tig]
 	line-graphics = yes
 	tab-size = 8
-	;diff-highlight = true
+	diff-highlight = true
+	;diff-so-fancy = true
 
 [alias]
 	cl = clone
@@ -112,3 +113,4 @@
 	smudge = git-lfs smudge -- %f
 	required = true
 	clean = git-lfs clean -- %f
+	process = git-lfs filter-process

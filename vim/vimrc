@@ -60,6 +60,7 @@ let g:nerdtree_tabs_smart_startup_focus = 1     " Keep focus on desired window
 let NERDTreeShowBookmarks = 1                   " Enable bookmarks displaying by default
 Plugin 'scrooloose/nerdtree'                    " Standard NERDTree
 Plugin 'jistr/vim-nerdtree-tabs'                " Extended NERDTree w/ tabs handling
+Plugin 'vim-scripts/Tabular'
 
 """""""""""""""""""""""""""""""""""""""""""""""
 "                   SNIPPETS                  "
@@ -183,7 +184,7 @@ set tags=tags;
 colorscheme molokai            " define color schemes (see ~/.vim/bundle/vim-colorschemes)
 set background=dark            " luminosity style (light/dark)
 set cursorline                 " highlight current line
-" set cursorcolumn             " highlight current column
+"set cursorcolumn             " highlight current column
 set fileencodings=utf-8        " default encoding for new files
 set scrolloff=3                " Min on lines to keep around cursor
 set number                     " set lines number

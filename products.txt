@@ -1,9 +1,0 @@
-superenv
-git
-#tig
-#vim
-#vundle
-#ctags
-#tmux
-#gcc
-#gdb

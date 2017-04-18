@@ -1,15 +1,11 @@
 #!/bin/sh
-export SUPERBASH_SOURCE_DIR=~/.superbash
-
-if [ -z "${SUPERBASH_USER_FILES}" ] ; then
-	SUPERBASH_USER_FILES="$HOME/Documents"
-fi
+export SUPERBASH_SOURCE_DIR=`dirname $0`
 
 . ${SUPERBASH_SOURCE_DIR}/bash_aliases
 . ${SUPERBASH_SOURCE_DIR}/bash_functions
 . ${SUPERBASH_SOURCE_DIR}/bash_ps1
-. ${SUPERBASH_SOURCE_DIR}/bash_git_completion
-test -f ${SUPERBASH_SOURCE_DIR}/bash_custom && . ${SUPERBASH_SOURCE_DIR}/bash_custom
+. ${SUPERBASH_SOURCE_DIR}/git_completion
+. ${SUPERBASH_SOURCE_DIR}/git_prompt
 
-# For i3 support with user-defined terminal
-export TERMINAL=gnome-terminal
+test -f ${HOME}/bash_custom && . ${HOME}/bash_custom
+
