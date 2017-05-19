@@ -112,12 +112,13 @@ map <F2> :NERDTreeTabsToggle<cr>
 map <F3> :TagbarToggle<cr>
 "map <F4> 
 " Disabling Highlighting
-map <F5> :noh<cr>
-map <F6> :GitGutterUndoHunk<cr> 
-map <F7> :GitGutterPrevHunk<cr>
-map <F8> :GitGutterNextHunk<cr>
+map <F5> :GitGutterUndoHunk<cr> 
+map <F6> :GitGutterPrevHunk<cr>
+map <F7> :GitGutterNextHunk<cr>
 " Run Make command
-map <F9> :make<cr><cr>
+map <F8> :diffget BA<cr>
+map <F9> :diffget LO<cr>
+map <F10> :diffget RE<cr>
 "map <F10> 
 "No mapping for F11 : fullscreen
 "map <F12>

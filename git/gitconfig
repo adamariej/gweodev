@@ -1,13 +1,12 @@
 [core]
-	excludesfile = ~/.gitignore_global
-	attributesfile = ~/.gitattributes_global
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 	;uncomment after set the binary in your path (git contrib)
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	compression = 9
 	askpass = 
 
 [help]
-	;autocorrect = 1
 
 [user]
 	email = adamj@paratools.com
@@ -21,7 +20,7 @@
 	renames = copy
 
 [log]
-	showSignature = true
+	abbrevCommit = true
 	mailmap = true
 
 [instaweb]
@@ -35,7 +34,8 @@
 [column]
 	status = never
 	;ui = auto
-
+[github]
+	user = gweodoo
 [commit]
 	gpgsign = true
 	verbose = true
@@ -94,23 +94,25 @@
 	cl = clone
 	flat = clone --depth 1
 	amend = commit --amend
-	bl = blame
-	ci = commit
 	co = checkout
-	cob = checkout -b
-	st = status -s
+	st = status -s -b
 	d = diff
 	dc = diff --cached
-	rb = rebase
-	rbi = rebase -i
 	ap = add -p
 	clear = reset --hard HEAD
-
+	g=grep --break --heading
+	l=log --graph --date=short --format='%C(red)%h %C(cyan)(%ad) %C(green)<%<(15,trunc)%aN> %Creset%<(80,trunc)%s %C(yellow)%d%Creset'
 
 [rerere]
 	enabled = true
+	autoupdate = 1
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	required = true
 	clean = git-lfs clean -- %f
 	process = git-lfs filter-process
+
+[grep]
+	extendRegexp = true
+	lineNumber = true

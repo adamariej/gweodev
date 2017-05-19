@@ -1,5 +1,5 @@
 #!/bin/sh
-export SUPERBASH_SOURCE_DIR=`dirname $0`
+export SUPERBASH_SOURCE_DIR=~/Documents/projets/superbash/superenv/
 
 . ${SUPERBASH_SOURCE_DIR}/bash_aliases
 . ${SUPERBASH_SOURCE_DIR}/bash_functions
