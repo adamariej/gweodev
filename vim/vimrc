@@ -72,8 +72,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>" " change 'previous field to '<shift
 " For installing snippets engine UltiSnips if vim is without python support
 " 1. Install python from sources (--enable-shared)
 " 2. Recomile vim with --enable-python?interp (? = 3 if python3)
-Plugin 'SirVer/ultisnips'                    " snippets engine (own format + snipMate)
 Plugin 'honza/vim-snippets'                  " snippets files (support both ultisnips and snipMate)
+Plugin 'gweodoo/mpi-snippets'                " Special snippets: MPI
+set runtimepath+=~/.vim/bundle/mpi-snippets
+Plugin 'SirVer/ultisnips'                    " snippets engine (own format + snipMate)
 Plugin 'scrooloose/nerdcommenter'            " Commenter
 
 """""""""""""""""""""""""""""""""""""""""""""""

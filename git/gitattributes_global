@@ -1,12 +1,12 @@
-#*.tar.bz2 diff=tarbz2
-#*.tbz2 diff=tarbz2
+*.tar.bz2 diff=tarbz2
+*.tbz2 diff=tarbz2
 *.tar.gz diff=targz
-#*.tgz diff=targz
-#*.tar.xz diff=tarxz
-#*.tar diff=tar
-#*.zip diff=zip
+*.tgz diff=targz
+*.tar.xz diff=tarxz
+*.tar diff=tar
+*.zip diff=zip
 #
-#*.pdf diff=pdf
-#*.exe diff=bin
-#*.png diff=bin
-#*.jpg diff=bin
+*.pdf diff=pdf
+*.exe diff=bin
+*.png diff=bin
+*.jpg diff=bin

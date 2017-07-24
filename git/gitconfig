@@ -13,7 +13,7 @@
 	name = Julien Adam
 	editor = vi
 	useConfigOnly = true
-	signingkey = EFE50C63
+	;signingkey = EFE50C63
 
 [diff]
 	mnemonicprefix = true
@@ -28,7 +28,6 @@
 	httpd = webrick
 
 [rebase]
-	gpgsign = true
 	missingCommitsCheck = warn
 
 [column]
@@ -37,10 +36,9 @@
 [github]
 	user = gweodoo
 [commit]
-	gpgsign = true
 	verbose = true
 [tag]
-	gpgsign = true
+	;gpgsign = true
 [push]
 	default = simple
 	gpgsign = if-asked
@@ -64,7 +62,6 @@
 	changed = yellow
 	untracked = red
 [merge]
-	gpgsign = true
 	tool = vimdiff
 	conflictstyle = diff3
 	log = true
@@ -106,12 +103,6 @@
 [rerere]
 	enabled = true
 	autoupdate = 1
-
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	required = true
-	clean = git-lfs clean -- %f
-	process = git-lfs filter-process
 
 [grep]
 	extendRegexp = true
