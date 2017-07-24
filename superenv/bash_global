@@ -1,5 +1,4 @@
 #!/bin/sh
-export SUPERBASH_SOURCE_DIR=~/Documents/projets/superbash/superenv/
 
 . ${SUPERBASH_SOURCE_DIR}/bash_aliases
 . ${SUPERBASH_SOURCE_DIR}/bash_functions
@@ -9,3 +8,4 @@ export SUPERBASH_SOURCE_DIR=~/Documents/projets/superbash/superenv/
 
 test -f ${HOME}/bash_custom && . ${HOME}/bash_custom
 
+. $SPACK_PATH/share/spack/setup-env.sh

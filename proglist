@@ -1,0 +1,10 @@
+exuberant-ctags
+vim
+git
+tmux
+htop
+tig
+gdb
+
+vundle.vim
+diff-so-fancy
