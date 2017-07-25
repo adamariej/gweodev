@@ -2,6 +2,7 @@ exuberant-ctags
 vim
 git
 tmux
+tmuxinator
 htop
 tig
 gdb

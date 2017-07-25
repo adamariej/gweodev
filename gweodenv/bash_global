@@ -1,0 +1,13 @@
+#!/bin/sh
+
+GWEDDEV_PATH=~/Documents/projets/gweodev
+
+. ${GWEDDEV_PATH}/gweodenv/bash_aliases
+. ${GWEDDEV_PATH}/gweodenv/bash_functions
+. ${GWEDDEV_PATH}/gweodenv/bash_ps1
+. ${GWEDDEV_PATH}/gweodenv/git_completion
+. ${GWEDDEV_PATH}/gweodenv/git_prompt
+
+test -f ${HOME}/.bash_custom && . ${HOME}/.bash_custom
+
+. $GWEDDEV_PATH/spack/share/spack/setup-env.sh
