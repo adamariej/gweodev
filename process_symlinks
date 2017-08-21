@@ -1,0 +1,24 @@
+#!/bin/bash
+
+error()
+{
+	echo "Error: $@"
+	exit 4
+}
+
+GWEODEV_PATH=.
+
+for link in `cat $GWEODEV_PATH/symlinks`
+do
+	src=`echo $link | cut -f1 -d":"`
+	target=`echo $link | cut -f2 -d":"`
+	
+	test -f $target.old && error "Don't want to erase a backup !"
+	if test -f $target; then
+		echo cp $target $target.old
+	else
+		echo "test -f $target"
+	fi
+
+	test -f $src && echo ln -sf $GWEODEV_PATH/$src $target
+done

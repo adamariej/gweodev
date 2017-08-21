@@ -121,6 +121,8 @@ set $CONTEXTSIZE_STACK = 6
 set $CONTEXTSIZE_DATA  = 8
 set $CONTEXTSIZE_CODE  = 8
 
+set print pretty on
+
 # __________________end gdb options_________________
 #
 

@@ -13,7 +13,7 @@
 	name = Julien Adam
 	editor = vi
 	useConfigOnly = true
-	;signingkey = EFE50C63
+	signingkey = EFE50C63
 
 [diff]
 	mnemonicprefix = true

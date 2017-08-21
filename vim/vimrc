@@ -146,13 +146,18 @@ map <c-o> :CtrlPTag<cr>
 
 " tags handling
 " Look for under-cursor tag and open the result in new tab
-map ff :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+noremap ff :exec("tjump ".expand("<cword>"))<CR>
 " Look for under-cursor tag and open the result in new vsplit
-map fd :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+noremap fd :vsp <CR>:exec("tjump ".expand("<cword>"))<CR>
 " Look for under-cursor tag and open the result in new hsplit
-map fs :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+noremap fs :exec("stjump ".expand("<cword>"))<CR>
 " Look for under-cursor tag and replace the current window
-map fe :e <CR>:exec("tag ".expand("<cword>"))<CR>
+noremap ft :tab split<CR>:exec("tjump ".expand("<cword>"))<CR>
+" Look for under-cursor tag and replace the current window
+noremap fe :pop<CR>
+noremap fz  :ta<CR>
+" list maching tags
+noremap fa :exec("stselect ".expand("<cword>"))<CR>
 
 "mouse support
 " Scroll 3 lines up with the mouse wheel
@@ -180,6 +185,11 @@ set wildmenu                       " completion menu
 let g:tex_flavor = "latex"         " default Tex context
 let g:load_doxygen_syntax=1
 set tags=tags;
+set hidden                         " hide unloaded buffers"
+set incsearch                      " Incremental search"
+set wildignore=*swp,*~,*bak,*pyc,*.o
+set visualbell                     "no beeps"
+set noerrorbells                   "no beeps"
 
 "##############################################################################"
 "#                                 INTERFACE                                  #"
@@ -201,8 +211,10 @@ set shiftwidth=8               " shifting insertion (like tabs)
 set autoindent                 " auto-indent
 set mouse=a                    " Mouse support
 "##############################################################################"
-"#                                ABBREVIATIONS                              ##"
+"#                                MISCELLANEOUS                              ##"
 "##############################################################################"
+set listchars=tab:\|\ ,space:\ ,trail:¶
+set list
 
 "##############################################################################"
 "#                               MISCELLANEOUS                               ##"
