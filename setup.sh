@@ -76,6 +76,10 @@ create_symlinks()
 
 build_packages()
 {
+	if test -d $GD_SRC/spack/ -a ! -e $GD_SRC/spack/share/spack/setup-env.sh; then
+		warn "Spack not present. Cloning it first"
+		echo "git submodule init && git submodule update"
+	fi
 	. $GD_SRC/spack/share/spack/setup-env.sh
 	grep -v '^ *#' < $GD_SRC/.defprogs |
 	while read package
