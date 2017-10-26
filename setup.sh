@@ -74,6 +74,11 @@ build_packages()
 		(git submodule init && git submodule update) || error "Can't download Spack !"
 	fi
 	. $GD_SRC/spack/share/spack/setup-env.sh || error "Can't source Spack environment !"
+	if test ! `type module`; then
+		warn "Environment-modules not present. Installing first"
+		spack install environment-modules || error "Unable to deploy environment-module"
+	fi
+ 
 	grep -v '^ *#' < $GD_SRC/.defprogs |
 	while read package
 	do
