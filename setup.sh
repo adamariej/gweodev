@@ -52,6 +52,14 @@ read_arg()
 	echo "$1" | sed -re "s@^$2@@"
 }
 
+line_to_add_bashrc()
+{
+	echo "#######################################################"
+	echo "Now add the following to your ~/.bashrc or ~/.profile:"
+	echo "  export GD_SRC=$GD_SRC"
+	echo "  . \${GD_SRC}/gweodenv/bash_global"
+}
+
 create_symlinks()
 {
 	for link in `cat $GD_SRC/.links`
@@ -61,7 +69,6 @@ create_symlinks()
 
 		test -f "$target.old" && warn "Don't want to erase a backup !" && continue
 		test -e "$target"     && echo cp $target $target.old
-		test ! -e "$target"   && echo "$target does not exist !"
 		test -f "$src"        && echo ln -sf $GD_SRC/$src $target
 	done
 
@@ -99,6 +106,9 @@ show_config
 
 create_symlinks
 
+
 rm -rf $GD_TMP
-echo "Installatino complete !"
+
+echo "Installation complete !"
+line_to_add_bashrc
 exit 0

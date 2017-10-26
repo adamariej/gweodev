@@ -5,6 +5,5 @@ git/gitconfig:~/.gitconfig
 git/gitignore:~/.gitignore
 
 tmux/tmux.conf:~/.tmux.conf
-tmux/tmuxinator:~/.tmuxinator
 
 vim/vimrc:~/.vimrc
