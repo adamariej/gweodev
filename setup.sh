@@ -69,7 +69,7 @@ create_symlinks()
 
 		test -f "$target.old" && warn "Don't want to erase a backup !" && continue
 		test -e "$target"     && echo cp $target $target.old
-		test -f "$src"        && echo ln -sf $GD_SRC/$src $target
+		test -f "$src"        && ln -sf $GD_SRC/$src $target
 	done
 
 }
@@ -85,16 +85,17 @@ build_packages()
 	while read package
 	do
 		test -z "$package" && continue
-		echo spack install $package
+		spack install $package
 	done
 }
 
 deploy_vim()
 {
-	echo mkdir -p ~/.vim/bundle
-	echo git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
-	echo vim +PluginInstall +qall
-	echo vim +PluginUpdate +qall
+	echo "Deploying VIM environment"
+	mkdir -p ~/.vim/bundle
+	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+	vim +PluginInstall +qall
+	vim +PluginUpdate +qall
 }
 
 GD_PWD="$PWD"
