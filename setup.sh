@@ -52,13 +52,6 @@ read_arg()
 	echo "$1" | sed -re "s@^$2@@"
 }
 
-line_to_add_bashrc()
-{
-	echo "#######################################################"
-	echo "Now add the following to your ~/.bashrc or ~/.profile:"
-	echo "printf \"export GD_SRC=$GD_SRC;\n. \${GD_SRC}/gweodenv/bash_global\" >> ~/.bashrc"
-}
-
 create_symlinks()
 {
 	for link in `cat $GD_SRC/.links`
@@ -67,7 +60,7 @@ create_symlinks()
 		target=`echo $link | cut -f2 -d":" | sed -e "s,HOME,${HOME},g"`
 
 		test -f "${target}.old" && warn "Don't want to erase a backup !" && continue
-		test -e "$target"     && echo cp $target ${target}.old
+		test -e "$target"     && warn "old $target saved" && cp $target ${target}.old
 		test -f "$src"        && ln -sf $GD_SRC/$src $target
 	done
 
@@ -136,9 +129,11 @@ deploy_vim
 
 rm -rf $GD_TMP
 
-echo "Installation complete !"
-line_to_add_bashrc
 echo "#######################################################"
-echo "To install VIM plugins, run:"
-echo "   vim +PluginInstall +qall"
+echo "# Installation complete ! Just few more steps:"
+echo "# 1. $GD_SRC/resources/update_bashrc.sh"
+echo "  2. . ~/.bashrc"
+echo "  3. spack load vim"
+echo "# 4. $GD_SRC/resources/install_vimplugins.sh"
+echo "###### THANKS FOR USING IT ! ##########################"
 exit 0
