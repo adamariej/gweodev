@@ -56,8 +56,7 @@ line_to_add_bashrc()
 {
 	echo "#######################################################"
 	echo "Now add the following to your ~/.bashrc or ~/.profile:"
-	echo "  export GD_SRC=$GD_SRC"
-	echo "  . \${GD_SRC}/gweodenv/bash_global"
+	echo "printf \"export GD_SRC=$GD_SRC;\n. \${GD_SRC}/gweodenv/bash_global\" >> ~/.bashrc"
 }
 
 create_symlinks()
@@ -65,10 +64,10 @@ create_symlinks()
 	for link in `cat $GD_SRC/.links`
 	do
 		src=`echo $link    | cut -f1 -d":"`
-		target=`echo $link | cut -f2 -d":"`
+		target=`echo $link | cut -f2 -d":" | sed -e "s,HOME,${HOME},g"`
 
-		test -f "$target.old" && warn "Don't want to erase a backup !" && continue
-		test -e "$target"     && echo cp $target $target.old
+		test -f "${target}.old" && warn "Don't want to erase a backup !" && continue
+		test -e "$target"     && echo cp $target ${target}.old
 		test -f "$src"        && ln -sf $GD_SRC/$src $target
 	done
 
@@ -93,9 +92,11 @@ deploy_vim()
 {
 	echo "Deploying VIM environment"
 	mkdir -p ~/.vim/bundle
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
-	vim +PluginInstall +qall
-	vim +PluginUpdate +qall
+	if test -d ~/.vim/bundle/vundle.vim; then
+		cd ~/.vim/bundle/vundle.vim && git pull
+	else
+		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+	fi
 }
 
 GD_PWD="$PWD"
@@ -129,13 +130,15 @@ show_config
 
 build_packages
 
-deploy_vim
-
 create_symlinks
 
+deploy_vim
 
 rm -rf $GD_TMP
 
 echo "Installation complete !"
 line_to_add_bashrc
+echo "#######################################################"
+echo "To install VIM plugins, run:"
+echo "   vim +PluginInstall +qall"
 exit 0

@@ -1,9 +1,9 @@
-gdb/gdbinit:~/.gdbinit
+gdb/gdbinit:HOME/.gdbinit
 
-git/gitattributes:~/.gitattributes
-git/gitconfig:~/.gitconfig
-git/gitignore:~/.gitignore
+git/gitattributes:HOME/.gitattributes
+git/gitconfig:HOME/.gitconfig
+git/gitignore:HOME/.gitignore
 
-tmux/tmux.conf:~/.tmux.conf
+tmux/tmux.conf:HOME/.tmux.conf
 
-vim/vimrc:~/.vimrc
+vim/vimrc:HOME/.vimrc
