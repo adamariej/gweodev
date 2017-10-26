@@ -1,4 +1,5 @@
 #!/bin/bash
+trap exit INT 
 
 banner()
 {
@@ -61,7 +62,7 @@ create_symlinks()
 
 		test -f "${target}.old" && warn "Don't want to erase a backup !" && continue
 		test -e "$target"     && warn "old $target saved" && cp $target ${target}.old
-		test -f "$src"        && ln -sf $GD_SRC/$src $target
+		test -f "$src"        && ln -sf $GD_SRC/$src $target || warn "Trouble to create $target link !"
 	done
 
 }
@@ -70,14 +71,14 @@ build_packages()
 {
 	if test -d $GD_SRC/spack/ -a ! -e $GD_SRC/spack/share/spack/setup-env.sh; then
 		warn "Spack not present. Cloning it first"
-		git submodule init && git submodule update
+		(git submodule init && git submodule update) || error "Can't download Spack !"
 	fi
-	. $GD_SRC/spack/share/spack/setup-env.sh
+	. $GD_SRC/spack/share/spack/setup-env.sh || error "Can't source Spack environment !"
 	grep -v '^ *#' < $GD_SRC/.defprogs |
 	while read package
 	do
 		test -z "$package" && continue
-		spack install $package
+		spack install $package || error "Unable to install $package"
 	done
 }
 
@@ -88,7 +89,7 @@ deploy_vim()
 	if test -d ~/.vim/bundle/vundle.vim; then
 		cd ~/.vim/bundle/vundle.vim && git pull
 	else
-		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim || error "Can't clone vundle.vim from Github !"
 	fi
 }
 
