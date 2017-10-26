@@ -1,4 +1,5 @@
 #BASICS
+nmap
 vim +huge+python
 git
 htop
