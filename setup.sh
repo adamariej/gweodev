@@ -74,6 +74,25 @@ create_symlinks()
 
 }
 
+build_packages()
+{
+	. $GD_SRC/spack/share/spack/setup-env.sh
+	grep -v '^ *#' < $GD_SRC/.defprogs |
+	while read package
+	do
+		test -z "$package" && continue
+		echo spack install $package
+	done
+}
+
+deploy_vim()
+{
+	echo mkdir -p ~/.vim/bundle
+	echo git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
+	echo vim +PluginInstall +qall
+	echo vim +PluginUpdate +qall
+}
+
 GD_PWD="$PWD"
 GD_SRC="`dirname $0`"
 GD_INSTALL=$GD_SRC/spack/opt
@@ -85,7 +104,8 @@ for arg in $@
 do
 	case $arg in
 		--install=*|-i=*)
-			GD_INSTALL="`read_arg "$arg" "--*i(nstall)*="`"
+			warn "For now, we don't handle different INSTALL_DIR than in SOURCES, sorry !"
+			#GD_INSTALL="`read_arg "$arg" "--*i(nstall)*="`"
 			;;
 		--help|-help|-h|-H)
 			help_menu
@@ -103,6 +123,9 @@ GD_INSTALL="`convert_absolute_path "$GD_INSTALL" "$GD_PWD"`"
 
 show_config
 
+build_packages
+
+deploy_vim
 
 create_symlinks
 

@@ -1,0 +1,15 @@
+#BASICS
+vim
+git
+htop
+less
+
+#DEV
+exuberant-ctags
+gdb
+tmux
+tig
+
+#ADVANCED
+vundle.vim
+diff-so-fancy
