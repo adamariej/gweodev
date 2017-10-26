@@ -100,7 +100,6 @@ deploy_vim()
 GD_PWD="$PWD"
 GD_SRC="`dirname $0`"
 GD_INSTALL=$GD_SRC/spack/opt
-GD_TMP="`mktemp -d`"
 
 banner
 

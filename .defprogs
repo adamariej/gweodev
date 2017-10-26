@@ -1,15 +1,10 @@
 #BASICS
-vim
+vim +huge+python
 git
 htop
-less
 
 #DEV
 exuberant-ctags
-gdb
+gdb +python
 tmux
 tig
-
-#ADVANCED
-vundle.vim
-diff-so-fancy
