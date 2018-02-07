@@ -27,6 +27,7 @@ show_config()
 	echo "  - SRC     = $GD_SRC                                  "
 	echo "  - INSTALL = $GD_INSTALL                              "
 	echo "  - TMP     = $GD_TMP                                  "
+	echo "  - CACHE   = $GD_CACHE                                "
 	echo "#######################################################"
 
 }
@@ -60,8 +61,7 @@ create_symlinks()
 		src=`echo $link    | cut -f1 -d":"`
 		target=`echo $link | cut -f2 -d":" | sed -e "s,HOME,${HOME},g"`
 
-		test -f "${target}.old" && warn "Don't want to erase a backup !" && continue
-		test -e "$target"     && warn "old $target saved" && cp $target ${target}.old
+		test -e "${target}" -a ! -L "$target" && warn "Don't want to erase the regular file $target !" && continue
 		test -f "$src"        && ln -sf $GD_SRC/$src $target || warn "Trouble to create $target link !"
 	done
 
@@ -74,10 +74,13 @@ build_packages()
 		(git submodule init && git submodule update) || error "Can't download Spack !"
 	fi
 	. $GD_SRC/spack/share/spack/setup-env.sh || error "Can't source Spack environment !"
-	if test ! `type module`; then
+	
+	type module > /dev/null 2>&1
+	if test "$?" != "0"; then
 		warn "Environment-modules not present. Installing first"
 		spack install environment-modules || error "Unable to deploy environment-module"
 	fi
+	#spack install gcc@$GD_GCC
  
 	grep -v '^ *#' < $GD_SRC/.defprogs |
 	while read package
@@ -100,7 +103,10 @@ deploy_vim()
 
 GD_PWD="$PWD"
 GD_SRC="`dirname $0`"
-GD_INSTALL=$GD_SRC/spack/opt
+GD_INSTALL=
+GD_TMP=
+GD_CACHE=
+GD_GCC=6.2.0
 
 banner
 
@@ -108,12 +114,20 @@ for arg in $@
 do
 	case $arg in
 		--install=*|-i=*)
-			warn "For now, we don't handle different INSTALL_DIR than in SOURCES, sorry !"
-			#GD_INSTALL="`read_arg "$arg" "--*i(nstall)*="`"
+			GD_INSTALL="`read_arg "$arg" "--*i(nstall)*="`"
+			;;
+		--tmp=*|-t=*)
+			GD_TMP="`read_arg "$arg" "--*t(mp)*="`"
+			;;
+		--cache=*|-c=*)
+			GD_CACHE="`read_arg "$arg" "--*c(ache)*="`"
 			;;
 		--help|-help|-h|-H)
 			help_menu
 			exit 0
+			;;
+		--cc_ver=*)
+			GD_GCC="`read_arg "$arg" "--cc_ver="`"
 			;;
 		*)
 			help_menu
@@ -122,15 +136,29 @@ do
 	esac
 done
 
+
 GD_SRC="`convert_absolute_path "$GD_SRC" "$GD_PWD"`"
+
+test -z "$GD_INSTALL" && GD_INSTALL=$GD_SRC/spack/opt/spack
+test -z "$GD_TMP" && GD_TMP=$GD_SRC/spack/var/spack/stage
+test -z "$GD_CACHE" @@ GD_CACHE=$GD_SRC/spack/var/spack/cache
+
 GD_INSTALL="`convert_absolute_path "$GD_INSTALL" "$GD_PWD"`"
+GD_TMP="`convert_absolute_path "$GD_TMP" "$GD_PWD"`"
+GD_CACHE="`convert_absolute_path "$GD_CACHE" "$GD_PWD"`"
 
 show_config
 
-build_packages
-
 create_symlinks
+mkdir -p $HOME/.spack
+cat<<EOF > $HOME/.spack/config.yaml
+config:
+    install_tree: $GD_INSTALL
+    build_stage: $GD_TMP
+    source_cache: $GD_CACHE
+EOF
 
+build_packages
 deploy_vim
 
 rm -rf $GD_TMP
