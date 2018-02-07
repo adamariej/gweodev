@@ -1,3 +1,4 @@
 [submodule "spack"]
 	path = spack
+	branch = develop
 	url = https://github.com/LLNL/spack.git
