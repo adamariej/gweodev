@@ -141,7 +141,7 @@ GD_SRC="`convert_absolute_path "$GD_SRC" "$GD_PWD"`"
 
 test -z "$GD_INSTALL" && GD_INSTALL=$GD_SRC/spack/opt/spack
 test -z "$GD_TMP" && GD_TMP=$GD_SRC/spack/var/spack/stage
-test -z "$GD_CACHE" @@ GD_CACHE=$GD_SRC/spack/var/spack/cache
+test -z "$GD_CACHE" && GD_CACHE=$GD_SRC/spack/var/spack/cache
 
 GD_INSTALL="`convert_absolute_path "$GD_INSTALL" "$GD_PWD"`"
 GD_TMP="`convert_absolute_path "$GD_TMP" "$GD_PWD"`"
