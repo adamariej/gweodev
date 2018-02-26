@@ -155,14 +155,14 @@ mkdir -p $HOME/.spack
 cat<<EOF > $HOME/.spack/config.yaml
 config:
     install_tree: $GD_INSTALL
-    build_stage: $GD_TMP
+    build_stage: $GD_TMP/spack
     source_cache: $GD_CACHE
 EOF
 
 build_packages
 deploy_vim
 
-rm -rf $GD_TMP
+rm -rf $GD_TMP/spack
 
 echo "#######################################################"
 echo "# Installation complete ! Just few more steps:"

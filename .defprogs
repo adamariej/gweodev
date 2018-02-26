@@ -1,8 +1,8 @@
 #BASICS
-nmap
 vim +huge+python
 git
 htop
+socat@1.7.3.2
 
 #DEV
 exuberant-ctags
