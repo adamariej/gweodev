@@ -97,6 +97,8 @@ Plugin 'kien/ctrlp.vim'           " Tag/file search engine
 Plugin 'tpope/vim-markdown'       " markdown automatic support
 Plugin 'Raimondi/delimitMate'     " Auto closing
 Plugin 'apalmer1377/factorus'     " Help w/ refactoring code
+let g:gundo_prefer_python3 = 1
+Plugin 'sjl/gundo.vim'
 
 "##############################################################################"
 "#                           FINISHING PLUGIN INIT                            #"
@@ -115,7 +117,7 @@ let mapleader = "," " map ',' as leader key
 map <F2> :NERDTreeTabsToggle<cr>
 " Current File Tag Panel
 map <F3> :TagbarToggle<cr>
-"map <F4> 
+map <F4> :GundoToggle<cr>
 " Disabling Highlighting
 map <F5> :GitGutterUndoHunk<cr> 
 map <F6> :GitGutterPrevHunk<cr>
