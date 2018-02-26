@@ -79,13 +79,13 @@ set $SETCOLOR1STLINE = 1
 # set to 0 to remove display of objectivec messages (default is 1)
 set $SHOWOBJECTIVEC = 0
 # set to 0 to remove display of cpu registers (default is 1)
-set $SHOWCPUREGISTERS = 1
+set $SHOWCPUREGISTERS = 0
 # set to 1 to enable display of stack (default is 0)
-set $SHOWSTACK = 1
+set $SHOWSTACK = 0
 # set to 1 to enable display of data window (default is 0)
 set $SHOWDATAWIN = 0
 # set to 0 to disable colored display of changed registers
-set $SHOWREGCHANGES = 1
+set $SHOWREGCHANGES = 0
 # set to 1 so skip command to execute the instruction at the new location
 # by default it EIP/RIP will be modified and update the new context but not execute the instruction
 set $SKIPEXECUTE = 0
@@ -93,7 +93,7 @@ set $SKIPEXECUTE = 0
 # 1 = use stepo (do not get into calls), 0 = use stepi (step into calls)
 set $SKIPSTEP = 1
 # show the ARM opcodes - change to 0 if you don't want such thing (in x/i command)
-set $ARMOPCODES = 1
+set $ARMOPCODES = 0
 # x86 disassembly flavor: 0 for Intel, 1 for AT&T
 set $X86FLAVOR = 1
 # use colorized output or not
@@ -218,7 +218,7 @@ source ~/.gdbinit.local
 
 # can't use the color functions because we are using the set command
 if $COLOREDPROMPT == 1
-	set prompt \033[1;36mgdb >> \033[0m
+	set prompt \033[1;31mgdb >> \033[0m
 end
 
 # Initialize these variables else comparisons will fail for coloring
@@ -3831,6 +3831,8 @@ end
 document enablecolorprompt
 | Enable color prompt
 end
+
+pi import duel
 
 #EOF
 

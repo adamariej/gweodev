@@ -9,6 +9,7 @@ alias la="ls -A"
 alias ll="ls -lh"
 alias lla="ll -A"
 alias du="du -sh"
+alias less="less -RFX --tabs=4"
 
 ##############
 ### OTHERS ###

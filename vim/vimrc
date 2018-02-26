@@ -66,6 +66,7 @@ Plugin 'vim-scripts/Tabular'
 "                   SNIPPETS                  "
 """""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<tab>"         " change snippet trigger on '<tab>'
+let g:UltiSnipsListSnippets="<c-l>"          " List Snippets for curretn filetype
 let g:UltiSnipsJumpForwardTrigger="<tab>"    " change 'next field' to '<tab>'
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>" " change 'previous field to '<shift-tab>'
 
@@ -84,6 +85,7 @@ Plugin 'scrooloose/nerdcommenter'            " Commenter
 set diffopt+=vertical            " Gdiff is split in vertical way
 Plugin 'tpope/vim-fugitive'      " main git plugin, commands in vim
 Plugin 'airblade/vim-gitgutter'  " Display differences in gutter
+Plugin 'Xuyuanp/nerdtree-git-plugin' " Show Git status in NerdTree
 
 """""""""""""""""""""""""""""""""""""""""""""""
 "                MISCELLANEOUS                "
@@ -91,9 +93,10 @@ Plugin 'airblade/vim-gitgutter'  " Display differences in gutter
 Plugin 'vim-scripts/a.vim'        " switch between .h and .c*
 let g:tagbar_autofocus=1
 Plugin 'majutsushi/tagbar'        " ctags handling
-Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'           " Tag/file search engine
 Plugin 'tpope/vim-markdown'       " markdown automatic support
 Plugin 'Raimondi/delimitMate'     " Auto closing
+Plugin 'apalmer1377/factorus'     " Help w/ refactoring code
 
 "##############################################################################"
 "#                           FINISHING PLUGIN INIT                            #"
@@ -227,3 +230,4 @@ autocmd QuickFixCmdPost *grep* cwindow
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 " autocmd when file open 
 autocmd BufReadPre,BufNewFile *.md,README*,*.tex setlocal textwidth=80 colorcolumn=80
+runtime ftplugin/man.vim
