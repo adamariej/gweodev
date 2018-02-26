@@ -80,8 +80,9 @@ build_packages()
 		warn "Environment-modules not present. Installing first"
 		spack bootstrap || error "Unable to deploy Spack Bootstrap"
 	fi
-	#spack install gcc@$GD_GCC
- 
+
+	spack repo add $GD_SRC/spack_recipes
+
 	grep -v '^ *#' < $GD_SRC/.defprogs |
 	while read package
 	do
