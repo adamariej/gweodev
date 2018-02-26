@@ -78,7 +78,7 @@ build_packages()
 	type module > /dev/null 2>&1
 	if test "$?" != "0"; then
 		warn "Environment-modules not present. Installing first"
-		spack install environment-modules || error "Unable to deploy environment-module"
+		spack bootstrap || error "Unable to deploy Spack Bootstrap"
 	fi
 	#spack install gcc@$GD_GCC
  
