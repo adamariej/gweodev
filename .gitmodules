@@ -2,3 +2,7 @@
 	path = spack
 	branch = develop
 	url = https://github.com/LLNL/spack.git
+[submodule "spack_recipes"]
+	path = spack_recipes
+	url = git@github.com:gweodoo/spack_repo.git
+	branch = master
