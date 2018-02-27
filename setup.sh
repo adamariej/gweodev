@@ -71,7 +71,7 @@ build_packages()
 {
 	if test -d $GD_SRC/spack/ -a ! -e $GD_SRC/spack/share/spack/setup-env.sh; then
 		warn "Spack not present. Cloning it first"
-		(git submodule init && git submodule update) || error "Can't download Spack !"
+		(git submodule update --remote) || error "Can't download Spack !"
 	fi
 	. $GD_SRC/spack/share/spack/setup-env.sh || error "Can't source Spack environment !"
 	
@@ -81,6 +81,7 @@ build_packages()
 		spack bootstrap || error "Unable to deploy Spack Bootstrap"
 	fi
 
+	test -f "$GD_SRC/spack_recipes" && git submodule update --remote
 	spack repo add $GD_SRC/spack_recipes
 
 	grep -v '^ *#' < $GD_SRC/.defprogs |
@@ -102,6 +103,40 @@ deploy_vim()
 	fi
 }
 
+list_installs()
+{
+	test -f ~/.gd_install || echo "No previous installation"
+	while read conf
+	do
+		install="`echo "$conf" | cut -f1 -d":"`"
+		cache="`echo "$conf" | cut -f2 -d":"`"
+
+		echo "* Install: $install (cache: $cache)"
+	done < ~/.gd_install
+}
+
+check_install()
+{
+	test -f ~/.gd_install || return
+
+	while read conf
+	do
+		install="`echo "$conf" | cut -f1 -d":"`"
+		cache="`echo "$conf" | cut -f2 -d":"`"
+
+		if test "$install" != "$GD_INSTALL"; then
+			error "You re-install while you already have an install in $install"
+		elif test "$cache" != "$GD_CACHE"; then
+			error "I do not handle Cache path moving yet !"
+		fi
+	done < ~/.gd_install
+}
+
+register_new_install()
+{
+	echo "$GD_INSTALL:$GD_CACHE" >> ~/.gd_install
+}
+
 GD_PWD="$PWD"
 GD_SRC="`dirname $0`"
 GD_INSTALL=
@@ -110,10 +145,13 @@ GD_CACHE=
 GD_GCC=6.2.0
 
 banner
-
 for arg in $@
 do
 	case $arg in
+		--list)
+			list_installs
+			exit 0
+			;;
 		--install=*|-i=*)
 			GD_INSTALL="`read_arg "$arg" "--*i(nstall)*="`"
 			;;
@@ -148,7 +186,10 @@ GD_INSTALL="`convert_absolute_path "$GD_INSTALL" "$GD_PWD"`"
 GD_TMP="`convert_absolute_path "$GD_TMP" "$GD_PWD"`"
 GD_CACHE="`convert_absolute_path "$GD_CACHE" "$GD_PWD"`"
 
+
 show_config
+
+check_install
 
 create_symlinks
 mkdir -p $HOME/.spack
@@ -161,6 +202,8 @@ EOF
 
 build_packages
 deploy_vim
+
+register_new_install
 
 rm -rf $GD_TMP/spack
 
