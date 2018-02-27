@@ -84,7 +84,7 @@
 [tig]
 	line-graphics = yes
 	tab-size = 8
-	diff-highlight = true
+	;diff-highlight = true
 	;diff-so-fancy = true
 
 [alias]
