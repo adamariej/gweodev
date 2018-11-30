@@ -14,6 +14,7 @@
 	editor = vi
 	useConfigOnly = true
 	signingkey = EFE50C63
+	username = gweodoo
 
 [diff]
 	mnemonicprefix = true
@@ -29,6 +30,7 @@
 
 [rebase]
 	missingCommitsCheck = warn
+	gpgsign = true
 
 [column]
 	status = never
@@ -37,11 +39,13 @@
 	user = gweodoo
 [commit]
 	verbose = true
+	gpgsign = true
 [tag]
-	;gpgsign = true
+	gpgsign = true
 [push]
 	default = simple
 	gpgsign = if-asked
+	recurseSubmodules = check
 
 [branch]
 	autosetuprebase = always
@@ -107,3 +111,5 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+[status]
+	submodulesummary = 1

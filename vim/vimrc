@@ -77,7 +77,14 @@ Plugin 'honza/vim-snippets'                  " snippets files (support both ulti
 Plugin 'gweodoo/mpi-snippets'                " Special snippets: MPI
 set runtimepath+=~/.vim/bundle/mpi-snippets
 Plugin 'SirVer/ultisnips'                    " snippets engine (own format + snipMate)
-Plugin 'scrooloose/nerdcommenter'            " Commenter
+" let g:NERDSpaceDelims = 1
+" let g:NERDTrimTrailingWhitespace = 1
+" let g:NERDCommentEmptyLines = 1
+" let g:NERDCustomDelimiters = {
+	" \ 'c': { 'left': '/*','right': '*/' },
+	" \ 'cpp': { 'left': '/*','right': '*/' }
+" \}
+" Plugin 'scrooloose/nerdcommenter'            " Commenter
 
 """""""""""""""""""""""""""""""""""""""""""""""
 "                     GIT                     "
@@ -96,9 +103,9 @@ Plugin 'majutsushi/tagbar'        " ctags handling
 Plugin 'kien/ctrlp.vim'           " Tag/file search engine
 Plugin 'tpope/vim-markdown'       " markdown automatic support
 Plugin 'Raimondi/delimitMate'     " Auto closing
-Plugin 'apalmer1377/factorus'     " Help w/ refactoring code
 let g:gundo_prefer_python3 = 1
 Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-surround'
 
 "##############################################################################"
 "#                           FINISHING PLUGIN INIT                            #"
@@ -129,6 +136,7 @@ map <F10> :diffget RE<cr>
 "map <F10> 
 "No mapping for F11 : fullscreen
 "map <F12>
+set pastetoggle=<F12>
 "##############################################################################"
 " Next tab
 nmap <Tab> :tabn<cr>
@@ -142,12 +150,13 @@ map <C-B> :bp<cr>
 
 " clipboard handling (if compiled w/ Vim)
 " Copy the line into the clipboard
-nmap <leader>; yy
+" nmap <leader>; yy
 " Copy the selection into the clipboard
-vmap <leader>; "+y
+" vmap <leader>; "+y
 " Paste the clipboard where the cursor is
-map <leader>: "+p<cr>
+" map <leader>: "+p<cr>
 map <c-o> :CtrlPTag<cr>
+nmap <leader>; :nohlsearch<cr>
 
 " tags handling
 " Look for under-cursor tag and open the result in new tab
@@ -192,6 +201,7 @@ let g:load_doxygen_syntax=1
 set tags=tags;
 set hidden                         " hide unloaded buffers"
 set incsearch                      " Incremental search"
+set hlsearch                       " Highlight other results"
 set wildignore=*swp,*~,*bak,*pyc,*.o
 set visualbell                     "no beeps"
 set noerrorbells                   "no beeps"
@@ -202,7 +212,7 @@ set noerrorbells                   "no beeps"
 colorscheme molokai            " define color schemes (see ~/.vim/bundle/vim-colorschemes)
 set background=dark            " luminosity style (light/dark)
 set cursorline                 " highlight current line
-"set cursorcolumn             " highlight current column
+" set cursorcolumn             " highlight current column
 set fileencodings=utf-8        " default encoding for new files
 set scrolloff=3                " Min on lines to keep around cursor
 set number                     " set lines number
@@ -213,7 +223,9 @@ set showcmd                    " display current command in status line
 set wrap                       " automatic lines wrapping
 set tabstop=8                  " tab size (as spaces)
 set shiftwidth=8               " shifting insertion (like tabs)
+set shiftround                 " Always use a multiple of shiftwidth to indent
 set autoindent                 " auto-indent
+set copyindent                 " Copy the current indent"
 set mouse=a                    " Mouse support
 "##############################################################################"
 "#                                MISCELLANEOUS                              ##"
@@ -233,3 +245,5 @@ autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "nor
 " autocmd when file open 
 autocmd BufReadPre,BufNewFile *.md,README*,*.tex setlocal textwidth=80 colorcolumn=80
 runtime ftplugin/man.vim
+" reopen a file w/ sudo command
+cmap w!! w !sudo tee % >/dev/null
