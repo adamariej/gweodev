@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. ${GD_SRC}/gweodenv/bash/bash_aliases
+. ${GD_SRC}/gweodenv/bash/bash_functions
+. ${GD_SRC}/gweodenv/bash/bash_ps1
+. ${GD_SRC}/gweodenv/bash/git_completion
+. ${GD_SRC}/gweodenv/bash/git_prompt
+
+test -f ${HOME}/.gd_custom && . ${HOME}/.gd_custom
+
+. $GD_SRC/spack/share/spack/setup-env.sh
