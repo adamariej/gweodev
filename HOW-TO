@@ -1,0 +1,33 @@
+1. install a package manager
+	- Homebrew : /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	- Spack : export PATH=... && spack bootstrap
+
+2. Install zsh
+
+3. Deploy oh-my-zsh (requires passwd for chsh)
+	- sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+3. Create zsh symlinks
+	- ln -sf $GWEODEV/gweodenv/zsh/custom ~/.zsh_custom
+	- ln -sf $GWEODEV/gweodenv/zsh/zshrc ~/.zshrc
+
+4. Create other symlinks
+	- ln -sf $GWEODEV/git/gitconfig ~/.gitconfig
+	- ln -sf $GWEODEV/git/gitattributes ~/.gitattributes
+	- ln -sf $GWEODEV/git/gitignore ~/.gitignore
+
+	- ln -sf $GWEODEV/tmux/tmux.conf ~/.tmux.conf
+	- ln -sf $GWEODEV/gdb/gdbinit ~/.gdbinit
+	
+
+5. Deploy VIM 
+	- git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle.vim
+	- ln -sf $GWEODEV/vim/vimrc ~/.vimrc
+	- vim +PluginInstall +qall
+	- ~/.vim/bundle/fonts/install.sh
+
+6. (OPTIONAL) Deploy Spack
+	- add '. $GWEODEV/spack/share/spack/setup-env.sh' to ~/.zshrc
+
+7. (OTIONAL) set I3 configs
+
