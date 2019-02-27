@@ -1,0 +1,2 @@
+#!/bin/sh
+perl -ne '$_ =~ /(\d+\.\d+) (\d\.\d+) (\d\.\d+) .*/; print "1: #[fg=green,bold]$1 #[fg=default, nobold]| 5: #[fg=colour208, bold]$2 #[fg=default, nobold]| 15: #[fg=red, bold]$3";' /proc/loadavg
