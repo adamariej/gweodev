@@ -28,6 +28,12 @@
 
 6. (OPTIONAL) Deploy Spack
 	- add '. $GWEODEV/spack/share/spack/setup-env.sh' to ~/.zshrc
+	- set in ~/.spack/config.yaml
+		config:
+			install_tree:
+			build_stage:
+			source_cache:
+	- spack repo add $GWEODEV/spack_recipes
 
 7. (OTIONAL) set I3 configs
 
