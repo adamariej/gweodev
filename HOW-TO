@@ -37,3 +37,14 @@
 
 7. (OTIONAL) set I3 configs
 
+8. Traditional tools :
+	- Git (up-to-date)
+	- gdb
+	- vim
+	- tmux
+	- htop
+	- netcat
+	- exuberant-ctags
+	- tig
+	- diff-so-fancy
+
