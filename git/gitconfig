@@ -4,7 +4,9 @@
 	;uncomment after set the binary in your path (git contrib)
 	pager = diff-so-fancy | less --tabs=4 -RFX 
 	compression = 9
-	askpass = 
+
+[gpg]
+	program = gpg
 
 [help]
 
@@ -30,7 +32,7 @@
 
 [rebase]
 	missingCommitsCheck = warn
-	gpgsign = true
+#	gpgsign = true
 
 [column]
 	status = never
@@ -39,12 +41,12 @@
 	user = gweodoo
 [commit]
 	verbose = true
-	gpgsign = true
+#	gpgsign = true
 [tag]
-	gpgsign = true
+#	gpgsign = true
 [push]
 	default = simple
-	gpgsign = if-asked
+#	gpgsign = if-asked
 	recurseSubmodules = check
 
 [branch]
@@ -92,17 +94,17 @@
 	;diff-so-fancy = true
 
 [alias]
-	cl = clone
 	flat = clone --depth 1
 	amend = commit --amend
 	co = checkout
-	st = status -s -b
+	ci = commit
+	st = status --short --branch --show-stash
 	d = diff
+	b = branch
 	dc = diff --cached
-	ap = add -p
 	clear = reset --hard HEAD
-	g=grep --break --heading
-	l=log --graph --date=short --format='%C(red)%h %C(cyan)(%ad) %C(green)<%<(15,trunc)%aN> %Creset%<(80,trunc)%s %C(yellow)%d%Creset'
+	g=grep --break --heading --show-function
+	l=log --graph --date=short --format='%C(red)%h %C(cyan)(%ad) %C(green)<%<(15,trunc)%aN> %Creset%<(50,trunc)%s %C(yellow)%d%Creset'
 
 [rerere]
 	enabled = true
@@ -111,5 +113,11 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+	fallbackToNoIndex = true
 [status]
 	submodulesummary = 1
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

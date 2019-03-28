@@ -135,7 +135,7 @@ map <F9> :diffget LO<cr>
 map <F10> :diffget RE<cr>
 "map <F10> 
 "No mapping for F11 : fullscreen
-"map <F12>
+map <F12> :make<cr>
 set pastetoggle=<F12>
 "##############################################################################"
 " Next tab
@@ -232,6 +232,7 @@ set mouse=a                    " Mouse support
 "##############################################################################"
 set listchars=tab:\|\ ,space:\ ,trail:¶
 set list
+set cino=N-s " avoid C++ namespace indentation when formatting sources
 
 "##############################################################################"
 "#                               MISCELLANEOUS                               ##"
