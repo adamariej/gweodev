@@ -172,6 +172,8 @@ noremap fe :pop<CR>
 noremap fz  :ta<CR>
 " list maching tags
 noremap fa :exec("stselect ".expand("<cword>"))<CR>
+noremap <C-w> <C-x>
+noremap <C-x> <C-a>
 
 "mouse support
 " Scroll 3 lines up with the mouse wheel
