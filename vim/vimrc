@@ -200,6 +200,7 @@ set wildmode=longest:full,full     " Completion mode : Longest(w/ visu) then ful
 set wildmenu                       " completion menu
 let g:tex_flavor = "latex"         " default Tex context
 let g:load_doxygen_syntax=1
+let g:doxygen_enhanced_color=1
 set tags=tags;
 set hidden                         " hide unloaded buffers"
 set incsearch                      " Incremental search"
@@ -226,6 +227,7 @@ set wrap                       " automatic lines wrapping
 set tabstop=8                  " tab size (as spaces)
 set shiftwidth=8               " shifting insertion (like tabs)
 set shiftround                 " Always use a multiple of shiftwidth to indent
+set noexpandtab
 set autoindent                 " auto-indent
 set copyindent                 " Copy the current indent"
 set mouse=a                    " Mouse support
