@@ -87,28 +87,40 @@ bindsym $mod+q focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+ampersand workspace 1
-bindsym $mod+eacute workspace 2
-bindsym $mod+quotedbl workspace 3
+bindsym $mod+ampersand workspace 1:Web
+bindsym $mod+eacute workspace 2:Code
+bindsym $mod+quotedbl workspace 3:Term
 bindsym $mod+apostrophe workspace 4
 bindsym $mod+parenleft workspace 5
 bindsym $mod+minus workspace 6
 bindsym $mod+egrave workspace 7
 bindsym $mod+underscore workspace 8
-bindsym $mod+ccedilla workspace 9
-bindsym $mod+agrave workspace 10
+bindsym $mod+ccedilla workspace 9:Mail
+bindsym $mod+agrave workspace 10:Music
 
 # move focused container to workspace
-bindsym $mod+Shift+ampersand move container to workspace 1
-bindsym $mod+Shift+eacute move container to workspace 2
-bindsym $mod+Shift+quotedbl move container to workspace 3
+bindsym $mod+Shift+ampersand move container to workspace 1:Web
+bindsym $mod+Shift+eacute move container to workspace 2:Code
+bindsym $mod+Shift+quotedbl move container to workspace 3:Term
 bindsym $mod+Shift+apostrophe move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+minus move container to workspace 6
 bindsym $mod+Shift+egrave move container to workspace 7
 bindsym $mod+Shift+underscore move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9
-bindsym $mod+Shift+agrave move container to workspace 10
+bindsym $mod+Shift+ccedilla move container to workspace 9:Mail
+bindsym $mod+Shift+agrave move container to workspace 10:Music
+
+#assign [class="Google-chrome"] 1:Web
+assign [class="Code - Insiders"] 2:Code
+
+assign [class="Thunderbird"] 9:Mail
+#know issue
+#assign [class="Spotify"] 10: Music
+for_window [class="Spotify"] move to workspace 10:Music
+
+#exec --no-startup-id i3-msg 'workspace Web; exec google-chrome'
+#exec --no-startup-id i3-msg 'workspace Music; spotify'
+
 
 bindsym $mod+n sticky toggle 
 
@@ -134,8 +146,8 @@ mode "resize" {
 
 # same bindings, but for the arrow keys
 		bindsym Left resize shrink width 10 px or 10 ppt
-		bindsym Down resize grow height 10 px or 10 ppt
-		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Down resize shrink height 10 px or 10 ppt
+		bindsym Up resize grow height 10 px or 10 ppt
 		bindsym Right resize grow width 10 px or 10 ppt
 
 # back to normal: Enter or Escape
@@ -148,9 +160,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	font pango:Courier New 12
+	font pango:Courier New 10
 	position bottom
-	status_command i3status -c "~/.i3/i3status.conf"
+	status_command i3status -c "~/.config/i3/i3status.conf"
 		workspace_buttons yes
 		colors {
 			background #000000
@@ -174,17 +186,20 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 # force status bar to refresh
 bindsym $mod+x exec killall -USR1 i3status
-bindcode 191 exec --no-startup-id thunar
-bindcode 192 exec --no-startup-id google-chrome
-bindcode 193 exec --no-startup-id evolution
-bindcode 194 exec --no-startup-id thunar
-bindcode 195 exec --no-startup-id thunar
+bindsym XF86Tools exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+#bindcode 192 exec --no-startup-id google-chrome
+#bindcode 193 exec --no-startup-id evolution
+#bindcode 194 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86Launch8 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 #System mode (reboot, shutdown, lock...)
 mode "system" {
-		bindsym l exec --no-startup-id /opt/sources/i3lock-multimonitor/lock -i $HOME/Images/background.png, mode "default"
+		bindsym l exec --no-startup-id /sources/i3lock-multimonitor/lock -i $HOME/Images/lock_background.png, mode "default"
 		bindsym e exec --no-startup-id i3-msg exit, mode "default"
 
 # back to normal: Enter or Escape
@@ -193,7 +208,7 @@ mode "system" {
 }
 bindsym $mod+p mode "system"
 
-for_window [class="^.*"] border pixel 6
+for_window [class="^.*"] border pixel 3
 new_window 1pixel
 client.focused          #00FF00 #000000 #FFFFFF #00AA00   #00AA00
 client.focused_inactive #000000 #000000 #555555 #000000   #111111

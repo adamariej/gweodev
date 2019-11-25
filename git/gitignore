@@ -10,6 +10,7 @@
 # Temporary files #
 ###################
 *.project
+*.code-workspace
 *.swp
 *.swo
 *~

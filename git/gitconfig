@@ -4,6 +4,7 @@
 	;uncomment after set the binary in your path (git contrib)
 	pager = diff-so-fancy | less --tabs=4 -RFX 
 	compression = 9
+	whitespace = trailing-space,space-before-tab,indent-with-non-tab,cr-at-eol
 
 [gpg]
 	program = gpg
