@@ -121,9 +121,9 @@ let mapleader = "," " map ',' as leader key
 "########################## FUNCTION KEY MAPPING ##############################"
 " Never bind <F1> key -> can be intercept by xterm
 " FS Tree Panel
-map <F2> :NERDTreeTabsToggle<cr>
 " Current File Tag Panel
-map <F3> :TagbarToggle<cr>
+map <F2> :TagbarToggle<cr>
+"map <F3> :
 map <F4> :GundoToggle<cr>
 " Disabling Highlighting
 map <F5> :GitGutterUndoHunk<cr> 
@@ -172,8 +172,6 @@ noremap fe :pop<CR>
 noremap fz  :ta<CR>
 " list maching tags
 noremap fa :exec("stselect ".expand("<cword>"))<CR>
-noremap <C-w> <C-x>
-noremap <C-x> <C-a>
 
 "mouse support
 " Scroll 3 lines up with the mouse wheel

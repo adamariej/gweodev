@@ -82,47 +82,43 @@ bindsym $mod+Shift+space floating toggle
 
 # focus the parent container
 bindsym $mod+q focus parent
+bindsym $mod+shift+q focus child
 
 # focus the child container
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+ampersand workspace 1:Web
-bindsym $mod+eacute workspace 2:Code
-bindsym $mod+quotedbl workspace 3:Term
+bindsym $mod+ampersand workspace 1
+bindsym $mod+eacute workspace 2
+bindsym $mod+quotedbl workspace 3
 bindsym $mod+apostrophe workspace 4
 bindsym $mod+parenleft workspace 5
 bindsym $mod+minus workspace 6
 bindsym $mod+egrave workspace 7
 bindsym $mod+underscore workspace 8
-bindsym $mod+ccedilla workspace 9:Mail
-bindsym $mod+agrave workspace 10:Music
+bindsym $mod+ccedilla workspace 9
+bindsym $mod+agrave workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+ampersand move container to workspace 1:Web
-bindsym $mod+Shift+eacute move container to workspace 2:Code
-bindsym $mod+Shift+quotedbl move container to workspace 3:Term
+bindsym $mod+Shift+ampersand move container to workspace 1
+bindsym $mod+Shift+eacute move container to workspace 2
+bindsym $mod+Shift+quotedbl move container to workspace 3
 bindsym $mod+Shift+apostrophe move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+minus move container to workspace 6
 bindsym $mod+Shift+egrave move container to workspace 7
 bindsym $mod+Shift+underscore move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9:Mail
-bindsym $mod+Shift+agrave move container to workspace 10:Music
+bindsym $mod+Shift+ccedilla move container to workspace 9
+bindsym $mod+Shift+agrave move container to workspace 10
 
-#assign [class="Google-chrome"] 1:Web
-assign [class="Code - Insiders"] 2:Code
+# left
+workspace 1 output HDMI-0
+# middle
+workspace 2 output DVI-I-1
+#right
+workspace 3 output DVI-D-0
 
-assign [class="Thunderbird"] 9:Mail
-#know issue
-#assign [class="Spotify"] 10: Music
-for_window [class="Spotify"] move to workspace 10:Music
-
-#exec --no-startup-id i3-msg 'workspace Web; exec google-chrome'
-#exec --no-startup-id i3-msg 'workspace Music; spotify'
-
-
-bindsym $mod+n sticky toggle 
+bindsym $mod+n sticky toggle
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -162,7 +158,8 @@ bindsym $mod+r mode "resize"
 bar {
 	font pango:Courier New 10
 	position bottom
-	status_command i3status -c "~/.config/i3/i3status.conf"
+	tray_output none
+	status_command /install/bin/i3status -c "~/.config/i3/i3status.conf"
 		workspace_buttons yes
 		colors {
 			background #000000
@@ -175,7 +172,7 @@ bar {
 		}
 }
 # apply background
-#exec --no-startup-id display -window root /home/adamj/Images/background2.png 
+#exec --no-startup-id display -window root /home/adamj/Images/background2.png
 exec --no-startup-id nitrogen --restore
 
 #bindsym $mod+n focus parent; fullscreen; focus child
@@ -191,11 +188,11 @@ bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mp
 bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 # force status bar to refresh
 bindsym $mod+x exec killall -USR1 i3status
-bindsym XF86Tools exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+#bindsym XF86Tools exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 #bindcode 192 exec --no-startup-id google-chrome
 #bindcode 193 exec --no-startup-id evolution
 #bindcode 194 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym XF86Launch8 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+#bindsym XF86Launch8 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 #System mode (reboot, shutdown, lock...)
 mode "system" {

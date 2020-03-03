@@ -60,7 +60,6 @@ plugins=(
 	common-aliases
 	systemd
 	docker
-	docker-compose
 	tmux
 	zsh-syntax-highlighting
 )
@@ -73,13 +72,6 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-export SOFTS_INSTALL=/install
-export PATH=$SOFTS_INSTALL/bin:$PATH
-export LD_LIBRARY_PATH=$SOFTS_INSTALL/lib:$SOFTS_INSTALL/lib64:$LD_LIBRARY_PATH
-export INCLUDE_PATH=$SOFTS_INSTALL/include:$INCLUDE_PATH
-export CPATH=$SOFTS_INSTALL/include:$CPATH
-export MANPATH=$SOFTS_INSTALL/share/man:$MANPATH
 
 #CUDA specific
 #export PATH=$PATH:/usr/local/cuda-7.5/bin
@@ -106,4 +98,7 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-. $HOME/.gweodev/spack/share/spack/setup-env.sh
+
+if test -f $HOME/.gweodev_local; then
+	. $HOME/.gweodev_local
+fi

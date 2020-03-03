@@ -7,16 +7,14 @@
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab,cr-at-eol
 
 [gpg]
-	program = gpg
-
-[help]
+	program = gpg2
 
 [user]
 	email = adamj@paratools.com
 	name = Julien Adam
 	editor = vi
 	useConfigOnly = true
-	signingkey = EFE50C63
+	signingkey = 1770CE0EEFE50C63
 	username = gweodoo
 
 [diff]
@@ -27,13 +25,8 @@
 	abbrevCommit = true
 	mailmap = true
 
-[instaweb]
-	browser = firefox
-	httpd = webrick
-
 [rebase]
 	missingCommitsCheck = warn
-#	gpgsign = true
 
 [column]
 	status = never
@@ -42,12 +35,9 @@
 	user = gweodoo
 [commit]
 	verbose = true
-#	gpgsign = true
-[tag]
-#	gpgsign = true
+	gpgsign = true
 [push]
 	default = simple
-#	gpgsign = if-asked
 	recurseSubmodules = check
 
 [branch]
@@ -115,5 +105,6 @@
 	extendRegexp = true
 	lineNumber = true
 	fallbackToNoIndex = true
+
 [status]
 	submodulesummary = 1

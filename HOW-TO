@@ -18,6 +18,7 @@
 
 	- ln -sf $GWEODEV/tmux/tmux.conf ~/.tmux.conf
 	- ln -sf $GWEODEV/gdb/gdbinit ~/.gdbinit
+	- ln -sf $GWEODEV/remap/Xmodmap ~/.Xmodmap && xmodmap ~/.Xmodmap
 	
 
 5. Deploy VIM 
@@ -27,24 +28,14 @@
 	- ~/.vim/bundle/fonts/install.sh
 
 6. (OPTIONAL) Deploy Spack
-	- add '. $GWEODEV/spack/share/spack/setup-env.sh' to ~/.zshrc
 	- set in ~/.spack/config.yaml
 		config:
 			install_tree:
 			build_stage:
 			source_cache:
 	- spack repo add $GWEODEV/spack_recipes
+	- spack bootstrap (if needed)
 
 7. (OTIONAL) set I3 configs
 
-8. Traditional tools :
-	- Git (up-to-date)
-	- gdb
-	- vim
-	- tmux
-	- htop
-	- netcat
-	- exuberant-ctags
-	- tig
-	- diff-so-fancy
-
+8. Add custom, local stuff in ~/.gweodev_local (sourced by ~/.zshrc)
