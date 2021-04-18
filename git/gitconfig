@@ -35,7 +35,7 @@
 	user = gweodoo
 [commit]
 	verbose = true
-	gpgsign = true
+	#gpgsign = true
 [push]
 	default = simple
 	recurseSubmodules = check
