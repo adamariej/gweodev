@@ -102,3 +102,4 @@ export EDITOR='vim'
 if test -f $HOME/.gweodev_local; then
 	. $HOME/.gweodev_local
 fi
+
