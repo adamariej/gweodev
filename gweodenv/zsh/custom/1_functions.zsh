@@ -49,3 +49,12 @@ function mpcbuild()
 	fi
 }
 
+function load_prefix()
+{
+
+}
+
+function unload_prefix()
+{
+
+}

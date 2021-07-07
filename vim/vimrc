@@ -107,6 +107,8 @@ let g:gundo_prefer_python3 = 1
 Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-surround'
 
+Plugin 'rust-lang/rust.vim'
+
 "##############################################################################"
 "#                           FINISHING PLUGIN INIT                            #"
 "##############################################################################"

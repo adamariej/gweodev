@@ -108,3 +108,5 @@
 
 [status]
 	submodulesummary = 1
+[pull]
+	rebase = false
