@@ -2,12 +2,9 @@
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 	;uncomment after set the binary in your path (git contrib)
-	pager = less --tabs=4 -RFX 
+	pager = diff-so-fancy | less --tabs=4 -RFX 
 	compression = 9
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab,cr-at-eol
-
-[gpg]
-	program = gpg2
 
 [user]
 	email = adamj@paratools.com
@@ -35,7 +32,7 @@
 	user = gweodoo
 [commit]
 	verbose = true
-	#gpgsign = true
+	gpgsign = true
 [push]
 	default = simple
 	recurseSubmodules = check
@@ -59,7 +56,7 @@
 	changed = yellow
 	untracked = red
 [merge]
-	tool = vimdiff
+	tool = kdiff3
 	conflictstyle = diff3
 	log = true
 
