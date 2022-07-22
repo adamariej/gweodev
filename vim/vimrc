@@ -222,8 +222,8 @@ set splitbelow                 " when split, open at below
 set splitright                 " when vsplit, open at right
 set showcmd                    " display current command in status line
 set wrap                       " automatic lines wrapping
-set tabstop=8                  " tab size (as spaces)
-set shiftwidth=8               " shifting insertion (like tabs)
+set tabstop=4                  " tab size (as spaces)
+set shiftwidth=4               " shifting insertion (like tabs)
 set shiftround                 " Always use a multiple of shiftwidth to indent
 set noexpandtab
 set autoindent                 " auto-indent

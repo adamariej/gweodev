@@ -61,6 +61,8 @@ plugins=(
 	systemd
 	docker
 	tmux
+	pyenv
+	web-search
 	zsh-syntax-highlighting
 )
 

@@ -18,19 +18,20 @@ set $mod Mod1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Courier New 8
+#font pango:Courier New 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+a kill
 focus_follows_mouse no
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -config ~/.config/rofi/config -show combi
+#bindsym $mod+d exec rofi -config ~/.config/rofi/config -show combi
+bindsym $mod+d exec ~/.config/rofi/launchers/colorful/launcher.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -153,40 +154,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	font pango:Courier New 10
-	position bottom
-	tray_output none
-	status_command i3pystatus -c ~/.config/i3/statusbar.py
-}
 # apply background
 #exec --no-startup-id display -window root /home/adamj/Images/background2.png
 exec --no-startup-id nitrogen --restore
 
-#bindsym $mod+n focus parent; fullscreen; focus child
-#BRIGHTNESS
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-#SOUND
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute
-bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
-bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-# force status bar to refresh
-bindsym $mod+x exec killall -USR1 i3status
-#bindsym XF86Tools exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-#bindcode 192 exec --no-startup-id google-chrome
-#bindcode 193 exec --no-startup-id evolution
-#bindcode 194 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-#bindsym XF86Launch8 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-
 #System mode (reboot, shutdown, lock...)
 mode "system" {
-		bindsym l exec --no-startup-id i3lock, mode "default"
+		bindsym l exec --no-startup-id i3lock -t -i ~/Images/lock.png, mode "default"
 		bindsym e exec --no-startup-id i3-msg exit, mode "default"
 
 # back to normal: Enter or Escape
@@ -195,10 +169,12 @@ mode "system" {
 }
 bindsym $mod+p mode "system"
 
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
 new_window 1pixel
 client.focused          #00FF00 #000000 #FFFFFF #00AA00   #00AA00
 client.focused_inactive #000000 #000000 #555555 #000000   #111111
 client.unfocused         #FF0000 #000000 #555555 #000000   #111111
 #client.urgent           #2f343a #900000 #ffffff #900000   #900000
 #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+exec --no-startup-id $HOME/.config/polybar/launch.sh
