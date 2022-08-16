@@ -16,10 +16,10 @@
 "##############################################################################"
 set nocompatible                       " disable retro compatibility with vi
 filetype off                           " Disabling autoload plugins
-set rtp+=~/.vim/bundle/vundle.vim/     " adding vundle to runtime path
+set rtp+=~/.vim/bundle/Vundle.vim/     " adding vundle to runtime path
 call vundle#begin()                    " start plugin declaration sequence
 let g:vundle_default_git_proto = 'git' " use git by default for update
-Plugin 'gmarik/vundle.vim'             " Plugin manager
+Plugin 'VundleVim/Vundle.vim'             " Plugin manager
 
 "##############################################################################"
 "#                              LOADED PLUGINS                                #"
