@@ -21,6 +21,7 @@ KEY="1ed5dab5baed841d690147e4c1d60b8c"
 CITY="arpajon"
 UNITS="metric"
 SYMBOL="°C"
+LCODE="fr"
 
 API="https://api.openweathermap.org/data/2.5"
 
@@ -31,8 +32,8 @@ if [ -n "$CITY" ]; then
         CITY_PARAM="q=$CITY"
     fi
 
-    current=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
-    forecast=$(curl -sf "$API/forecast?appid=$KEY&$CITY_PARAM&units=$UNITS&cnt=1")
+    current=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS&lang=$LCODE")
+    forecast=$(curl -sf "$API/forecast?appid=$KEY&$CITY_PARAM&units=$UNITS&cnt=1&lang=$LCODE")
 else
     location=$(curl -sf https://location.services.mozilla.com/v1/geolocate?key=geoclue)
 
@@ -40,8 +41,8 @@ else
         location_lat="$(echo "$location" | jq '.location.lat')"
         location_lon="$(echo "$location" | jq '.location.lng')"
 
-        current=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS")
-        forecast=$(curl -sf "$API/forecast?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS&cnt=1")
+        current=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS&lang=$LCODE")
+        forecast=$(curl -sf "$API/forecast?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS&cnt=1&lang=$LCODE")
     fi
 fi
 
@@ -54,13 +55,15 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
     forecast_temp=$(echo "$forecast" | jq ".list[].main.temp" | cut -d "." -f 1)
     forecast_icon=$(echo "$forecast" | jq -r ".list[].weather[0].icon")
 
+
     if [ "$current_temp" -gt "$forecast_temp" ]; then
         trend="↘️"
     elif [ "$forecast_temp" -gt "$current_temp" ]; then
         trend="↗️"
     else
-        trend="🟰"
+        trend="="
     fi
+	trend="BECMG"
 
-	echo "$(get_icon "$current_icon") "$current_desc", $current_temp$SYMBOL $(get_icon "wind") $(( $current_wind * 3600/1000 )) km/h  $trend  $(get_icon "$forecast_icon") $forecast_temp$SYMBOL"
+	echo "$(get_icon "$current_icon") "$current_desc", $current_temp$SYMBOL, Vent $(( $current_wind * 3600/1000 )) km/h  $trend  $(get_icon "$forecast_icon") $forecast_temp$SYMBOL"
 fi
