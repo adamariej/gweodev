@@ -32,5 +32,7 @@
 ##########
 tags
 mine.cfg
-build/
 .vscode/
+whitesource
+*-csproj
+__pycache__

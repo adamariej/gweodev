@@ -18,7 +18,7 @@ set nocompatible                       " disable retro compatibility with vi
 filetype off                           " Disabling autoload plugins
 set rtp+=~/.vim/bundle/Vundle.vim/     " adding vundle to runtime path
 call vundle#begin()                    " start plugin declaration sequence
-let g:vundle_default_git_proto = 'git' " use git by default for update
+"let g:vundle_default_git_proto = 'git' " use git by default for update
 Plugin 'VundleVim/Vundle.vim'             " Plugin manager
 
 "##############################################################################"
@@ -178,6 +178,7 @@ noremap fa :exec("stselect ".expand("<cword>"))<CR>
 map <ScrollWheelUp> 3<C-Y>
 " Scroll 3 lines down with the mouse wheel
 map <ScrollWheelDown> 3<C-E> 
+noremap <leader>V <C-v>
 
 "##############################################################################"
 "#                              MAIN SETTINGS                                 #"
