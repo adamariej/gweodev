@@ -2,7 +2,7 @@
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 	;uncomment after set the binary in your path (git contrib)
-	pager = diff-so-fancy | less --tabs=4 -RFX 
+	;pager = diff-so-fancy | less --tabs=4 -RFX 
 	compression = 9
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab,cr-at-eol
 
@@ -56,8 +56,7 @@
 	changed = yellow
 	untracked = red
 [merge]
-	tool = kdiff3
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 	log = true
 
 ; diff rules
@@ -107,19 +106,25 @@
 	submodulesummary = 1
 
 [pager]
-    diff = delta
-    log = delta
-    reflog = delta
-    show = delta
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+	blame = delta
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-    features = line-numbers decorations
-    whitespace-error-style = 22 reverse
+	features = line-numbers decorations
+	whitespace-error-style = 22 reverse
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+
 
 [delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+[gui]
+	recentrepo = C:/Users/jadam-ma/root2-main
