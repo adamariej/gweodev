@@ -7,7 +7,7 @@
 				{
 					"type": "session",
 					"style": "diamond",
-					"foreground": "#FFBD00",
+					"foreground": "green",
 					"foreground_templates": [
 						"{{if .SSHSession}}#BF3030{{end}}"
 					],
