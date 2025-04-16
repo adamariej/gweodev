@@ -33,7 +33,7 @@
 						"{{ if .Staging.Changed}}yellow{{end}}"
 					],
 
-					"template": "\uf408{{.HEAD}}{{if .BranchStatus }}{{ .BranchStatus }}{{end}}{{ if .Working.Changed }}\ue621\udb81\udd1b{{ .Working.String }}{{ end }}{{ if .Staging.Changed }}\ue621\uf14a{{ .Staging.String }}{{ end }}",
+					"template": "\uf408 {{.HEAD}}{{if .BranchStatus }}{{ .BranchStatus }}{{end}}{{ if .Working.Changed }}\ue621\udb81\udd1b{{ .Working.String }}{{ end }}{{ if .Staging.Changed }}\ue621\uf14a{{ .Staging.String }}{{ end }}",
 					"properties": {
 						"fetch_status": true,
 						"fetch_upstream_icon": true,
@@ -47,14 +47,14 @@
 				{
 					"foreground": "darkGray",
 					"style": "diamond",
-					"template": "\ue81d{{.Context}}{{if .Namespace}}({{.Namespace}}){{end}}",
+					"template": "\ue81d {{.Context}}{{if .Namespace}}({{.Namespace}}){{end}}",
 					"type": "kubectl"
 				},
 				{
 					"type": "terraform",
 					"style": "diamond",
 					"foreground": "#ebcc34",
-					"template": " \ue8bd{{.WorkspaceName}} "
+					"template": " \ue8bd {{.WorkspaceName}} "
 				}
 			],
 			"type": "prompt"
@@ -65,7 +65,7 @@
 				{
 					"type": "sysinfo",
 					"foreground": "#8f43f3",
-					"template": " {{ round .PhysicalPercentUsed .Precision }}% ",
+					"template": "  {{ round .PhysicalPercentUsed .Precision }}% ",
 					"properties": {
 						"precision": 0
 					},
